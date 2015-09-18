@@ -263,9 +263,10 @@ div.text-caption-single.carousel-inner > img{
 }
 
 .img-responsive{
-        min-height: 100px;
+    min-height: 100px;
 }
 
-.row {
-    margin: 0px;
+.text-caption .img-responsive {
+    height: 241px;
+    width: 370px;
 }

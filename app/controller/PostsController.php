@@ -13,7 +13,6 @@ use thom855j\PHPMvcFramework\Controller,
     thom855j\PHPMultilingual\I18n,
     thom855j\PHPSecurity\Validator,
     thom855j\PHPSecurity\Session,
-    thom855j\PHPSecurity\Cookie,
     thom855j\PHPScrud\DB;
 
 class PostsController extends Controller
@@ -39,7 +38,7 @@ class PostsController extends Controller
     {
         if (Input::exists('post'))
         {
-        
+
             //Update post 
             $this->validateInput();
 
@@ -71,6 +70,7 @@ class PostsController extends Controller
                     DB::load()->insert('Meta_items', array(
                         'Meta_ID' => $post_last_id,
                         'Item_ID' => $upload_id,
+                        'User_ID' => Session::getKey('User', 'ID'),
                         'Type'    => 'uploads'
                     ));
                 }
@@ -81,7 +81,7 @@ class PostsController extends Controller
         }
         $uploads = DB::load()->query('SELECT
         ID, Timestamp, Slug 
-        FROM Uploads WHERE User_ID = ? ORDER BY ID DESC ',array(Session::getKey('User', 'ID')))->results();
+        FROM Uploads WHERE User_ID = ? ORDER BY ID DESC ', array(Session::getKey('User', 'ID')))->results();
 
         $upload_items = DB::load()->query('SELECT
         Item_ID FROM Meta_items WHERE Type = ? ORDER BY Item_ID DESC ', array('uploads'))->results();
@@ -201,7 +201,7 @@ class PostsController extends Controller
         FROM Uploads ORDER BY ID DESC ')->results();
 
             $upload_items = DB::load()->query('SELECT
-        Item_ID FROM Meta_items WHERE Type = ? ORDER BY Item_ID DESC ', array('uploads'))->results();
+        Item_ID FROM Meta_items WHERE Type = ? AND Meta_ID = ? ORDER BY ID DESC ', array('uploads',$ID))->results();
 
             return (object) array(
                         'posts'        => $post,
@@ -248,6 +248,11 @@ class PostsController extends Controller
             ),
             'thumbnail' => array(
                 'required' => true
+            ),
+            'excerpt'   => array(
+                'required' => true,
+                'max'      => 150,
+                'min' => 25
             )
         ));
 
@@ -286,7 +291,7 @@ class PostsController extends Controller
                 DB::load()->insert('Meta_items', array(
                     'Meta_ID' => Input::get('post_id'),
                     'Item_ID' => Input::get('user_id'),
-                    'User_ID' =>  Input::get('user_id'),
+                    'User_ID' => Input::get('user_id'),
                     'Type'    => 'favorite'
                 ));
                 Session::set('SUCCESS', 'Favorit gemt!');
@@ -297,7 +302,7 @@ class PostsController extends Controller
                 DB::load()->delete('Meta_items', array(
                     array('Item_ID', '=', Input::get('user_id')),
                     array('Type', '=', 'favorite'),
-                    array('User_ID','=', Input::get('user_id'))
+                    array('User_ID', '=', Input::get('user_id'))
                 ));
                 Session::set('SUCCESS', 'Favorit slettet!');
                 Redirect::to(Input::get('current_url'));
