@@ -1,0 +1,35 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 20-08-2015, 23:32:06
+    Author     : thoma
+*/
+
+/* on mobile browsers, I set a width of 100% */
+table.mceLayout, textarea.tinyMCE {
+    width: 100% !important;
+}
+
+/* on large screens, I use a different layout, so 600px are sufficient */
+@media only screen and (min-width: 600px) {
+    table.mceLayout, textarea.richEditor {
+        width: 1024px !important;
+        height: 300px;
+    }
+}
+
+.modal-dialog {
+    width: 100%;
+}
+
+ul.thumbnails.image_picker_selector li {
+    width: 10%;
+    margin-left: 20px;
+}
+
+.thumbnail>img {
+    height: 100px;
+}

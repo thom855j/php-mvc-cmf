@@ -1,0 +1,26 @@
+{
+  "name": "php-mvc-cmf",
+  "version": "0.0.1",
+  "authors": [
+    "Thomas Elvin <thom855j@cvkweb.dk>"
+  ],
+  "description": "HørtMag",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "assets/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "latest",
+    "bootstrap": "latest",
+    "image-picker": "latest",
+    "datetimepicker": "latest",
+    "unslider": "latest",
+    "lightbox2": "latest",
+    "scroll-reveal": "latest"
+  }
+}

@@ -1,0 +1,57 @@
+
+/* 
+    Created on : Sep 14, 2015, 10:27:32 AM
+    Author     : thom855j
+*/
+
+/*
+Fonts
+*/
+body {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 700;
+}
+
+h1, h2, h3, h4, h5, h6 { 
+    font-family: 'Ubuntu', sans-serif;
+}
+
+p, a {
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1{
+    font-weight: 400;
+}
+
+h2{
+    font-weight: 300;
+}
+
+p, a {
+    font-weight: 400;
+}
+
+p.font-300 {
+    font-weight: 300;
+}
+
+p.font-700 {
+    font-weight: 700;
+}
+
+p.font-size-18{
+    font-size: 18px;
+}
+
+p.font-size-21{
+    font-size: 21px;
+}
+
+p.font-size-30{
+    font-size: 30px;
+}
+
+p.font-weight-bold{
+   font-weight: bold;
+}
