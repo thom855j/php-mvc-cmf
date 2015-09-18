@@ -201,7 +201,7 @@ class PostsController extends Controller
         FROM Uploads ORDER BY ID DESC ')->results();
 
             $upload_items = DB::load()->query('SELECT
-        Item_ID FROM Meta_items WHERE Type = ? AND Meta_ID = ? ORDER BY ID DESC ', array('uploads',$ID))->results();
+        Item_ID FROM Meta_items WHERE Type = ? AND Meta_ID = ? ORDER BY ID DESC ', array('uploads', $ID))->results();
 
             return (object) array(
                         'posts'        => $post,
@@ -252,7 +252,7 @@ class PostsController extends Controller
             'excerpt'   => array(
                 'required' => true,
                 'max'      => 150,
-                'min' => 25
+                'min'      => 25
             )
         ));
 
@@ -301,8 +301,8 @@ class PostsController extends Controller
             {
                 DB::load()->delete('Meta_items', array(
                     array('Item_ID', '=', Input::get('user_id')),
-                    array('Type', '=', 'favorite'),
-                    array('User_ID', '=', Input::get('user_id'))
+                    array('Meta_ID', '=', Input::get('post_id')),
+                    array('Type', '=', 'favorite')
                 ));
                 Session::set('SUCCESS', 'Favorit slettet!');
                 Redirect::to(Input::get('current_url'));

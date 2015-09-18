@@ -134,7 +134,7 @@ use thom855j\PHPHtml\Form;
                 </div>
 
                 <?php
-                if (!empty($this->data->saves[0]))
+                if (!empty($this->data->saves))
                 {
                     ?>
                     <div class=" text-center">
