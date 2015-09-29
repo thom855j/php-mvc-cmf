@@ -5,4 +5,4 @@ RewriteEngine on
 Options -Indexes 
  
 # public access
-RewriteRule ^public - [L,NC] 
+RewriteRule ^(.*) public/$1 [L] 
