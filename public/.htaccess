@@ -5,14 +5,6 @@ Options -MultiViews
 # Activates URL rewriting (like myproject.com/controller/action/1/2/3) 
 RewriteEngine On 
 
-# Prevent people from looking directly into folders 
-Options -Indexes 
-
-# public access 
-RewriteRule ^public - [L,NC]  
-RewriteRule ^app - [L,NC]  
-RewriteRule ^vendor - [L,NC]  
-
 # If the following conditions are true, then rewrite the URL: 
 # If the requested filename is not a directory, 
 RewriteCond %{REQUEST_FILENAME} !-d 

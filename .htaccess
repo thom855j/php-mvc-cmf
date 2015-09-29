@@ -1,5 +1,8 @@
  #Start the apache rewrite engine to make fx. make "nice" urls
 RewriteEngine on 
+
+# Prevent people from looking directly into folders 
+Options -Indexes 
  
 # public access
 RewriteRule ^public - [L,NC] 

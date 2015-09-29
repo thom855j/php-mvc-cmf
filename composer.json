@@ -1,25 +1,33 @@
 {
-    "name": "thom855j/php-mvc-cmf",
-    "type": "project",
-    "license": "MIT",
-    "description": "A simple mvc cmf",
-    "minimum-stability": "dev",
-    "require": {
-        "php": ">=5.4.0",
-        "thom855j/php-security": "dev-master",
-        "thom855j/php-scrud": "dev-master",
-        "thom855j/php-multilingual": "dev-master",
-        "thom855j/php-mvc-framework": "dev-master",
-        "thom855j/php-filesystem": "dev-master",
-        "thom855j/php-auth-framework": "dev-master",
-        "thom855j/php-email": "dev-master",
-        "thom855j/php-html": "dev-master",
-        "thom855j/php-http": "dev-master"
-    },
-    "autoload": {
-        "psr-4": {
-            "App\\Model\\": "app/model/",
-            "App\\Controller\\": "app/controller/"
-        }
-    }
+	"name": "websupport-dk/php-mvc-cmf",
+	"type": "project",
+	"license": "MIT",
+	"homepage": "https://github.com/WebSupport-DK/php-mvc-cmf",
+	"description": "A simple mvc cmf",
+	"minimum-stability": "dev",
+	"authors": [
+		{
+			"name": "Thomas Elvin",
+			"email": "sde.thom855j@gmail.com",
+			"homepage": "http://websupport.dk",
+			"role": "Developer"
+		}
+	],
+	"require": {
+		"php": ">=5.5.0",
+		"websupport-dk/php-security": "dev-master",
+		"websupport-dk/php-scrud": "dev-master",
+		"websupport-dk/php-multilingual": "dev-master",
+		"websupport-dk/php-mvc-framework": "dev-master",
+		"websupport-dk/php-filesystem": "dev-master",
+		"websupport-dk/php-auth-framework": "dev-master",
+		"websupport-dk/php-email": "dev-master",
+		"websupport-dk/php-html": "dev-master",
+		"websupport-dk/php-http": "dev-master"
+	},
+	"autoload": {
+		"psr-4": {
+			"": "app/"
+		}
+	}
 }
