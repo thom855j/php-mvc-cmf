@@ -17,15 +17,20 @@ class DefaultController extends Controller
 	/**
 	 * Construct this object by extending the base Controller class and view
 	 */
-	private function __construct()
+	public function __construct()
 	{
 		// construct Controller
 		parent::__construct();
+		$this->_info['app_header'] = PATH_APP_VIEWS_THEMES . APP_THEME . '/assets/inc/_header';
+		$this->_info['app_theme'] = PATH_APP_VIEWS_THEMES . APP_THEME . DIRECTORY_SEPARATOR;
 	}
 
 	public function index()
 	{
-		//example
-		var_dump($this);
+		$this->View->render(array(
+			$this->_info['app_header'],
+			$this->_info['app_theme'] . 'index'
+			
+		));
 	}
 }
