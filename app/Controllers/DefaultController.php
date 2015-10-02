@@ -5,6 +5,7 @@
  */
 // use folllowing classes
 use WebSupportDK\PHPMvcFramework\Controller;
+use Models\Pages\PageModel;
 
 class DefaultController extends Controller
 {
@@ -27,10 +28,23 @@ class DefaultController extends Controller
 
 	public function index()
 	{
+		$this->data['test'] = array(0 => 'Hans', 1 => 'Poul');
 		$this->View->render(array(
 			$this->_info['app_header'],
 			$this->_info['app_theme'] . 'index'
-			
-		));
+			), $this->data);
+	}
+
+	public function pages($name)
+	{
+		$page = new PageModel();
+		$this->data['page'] = $page->get($name)[0];
+		if (empty($this->data['page'])) {
+			return http_response_code(404);
+		}
+		$this->View->render(array(
+			$this->_info['app_header'],
+			$this->_info['app_theme'] . 'index'
+			), $this->data);
 	}
 }

@@ -1,1 +1,4 @@
-<h1>Header</h1>
+<?php if (!isset($this->page)): ?>
+Ingen data!
+<?php endif; ?>
+<h1><?= $this->page->Title ?></h1>
