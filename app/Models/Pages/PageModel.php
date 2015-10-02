@@ -14,9 +14,9 @@ class PageModel extends Model
 		parent::__construct();
 	}
 
-	public function get($name)
+	public function getName($name)
 	{
-		$sql = 'SELECT * FROM PAGES WHERE Name = ? LIMIT 1';
+		$sql = 'SELECT * FROM Pages WHERE Name = ? LIMIT 1';
 		$params = array($name);
 		$this->_db->query($sql, $params);
 		return $this->_db->results();
