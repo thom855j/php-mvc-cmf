@@ -1,0 +1,262 @@
+/* 
+    Created on : Sep 14, 2015, 10:27:38 AM
+    Author     : thom855j
+*/
+
+/*
+Layout
+*/
+
+a.a-font-size-18 {
+    font-size: 18px;
+}
+h2 {
+    margin: 0px;
+}
+
+ul {
+    margin: 0px;
+    -webkit-padding-start: 0px;
+}
+ul li {
+    list-style: none;
+
+}
+ul > li > a {
+    padding: 0px;
+    color: #fff;   
+}
+
+a.a-font-size-21 {
+    font-size: 21px;
+}
+
+a.a-bold{
+    font-weight: bold;
+}
+.page-wrapper{
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.container-fluid {
+    padding: 0px;
+}
+
+.index-banner, .minside-banner, .error-banner{
+    background-image:  url('../img/banner/banner-1.jpg');
+    background-color: #6d707f;
+    background-blend-mode: multiply;
+    background-position: center;
+    min-height: 500px;
+    background-size: cover;
+
+}
+
+.ejendom-banner{
+    background-image:  url('../img/banner/banner-3.jpg');
+    background-color: #6d707f;
+    background-blend-mode: multiply;
+    background-position: center;
+    min-height: 500px;
+    background-size: cover;
+}
+
+.ejendomme-banner{
+    background-image:  url('../img/banner/banner-2.jpg');
+    background-color: #6d707f;
+    background-blend-mode: multiply;
+    background-position: center;
+    min-height: 500px;
+    background-size: cover;
+}
+
+.login-banner{
+    background-image:  url('../img/banner/banner-5.jpg');
+    background-color: #6d707f;
+    background-blend-mode: multiply;
+    background-position: center;
+    min-height: 500px;
+    background-size: cover;
+}
+
+.bottom-banner{
+    background-image:  url('../img/banner/banner-4.jpg');
+    background-color: #ccccff;
+    background-blend-mode: multiply;
+    background-position: center;
+    max-height: 300px;
+    background-size: cover;
+    margin: 150px 0px 100px 0px;
+}
+
+.content-wrapper {
+    min-height: 500px;
+    padding: 100px;
+}
+
+.paging-wrapper{
+    padding-bottom: 25px;
+}
+
+.content-wrapper-less{
+    min-height: 500px;
+    padding: 100px 0px 100px 0px;
+}
+
+.content {
+    padding: 50px 20px 50px 20px;
+}
+
+.footer{
+    min-height: 250px;
+    padding-right: 150px;
+    padding-left: 200px;
+}
+
+.content-header{
+    padding: 0px 20px 50px 20px;
+    margin-top: -50px;
+}
+
+.content-preview-header{
+    padding-bottom: 50px;
+}
+
+.content-excerpt{
+    padding: 25px;
+    min-height: 250px;
+}
+
+.content-excerpt-paging{
+    padding: 25px;
+    height: 242px;
+}
+
+.splitter{
+    border-bottom: 3px solid #FA7E3E;
+    width: 25%;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.form-splitter {
+    border-bottom: 1px solid #ccc;
+    margin-top: 25px;
+}
+
+
+.header{
+    padding: 50px 100px 100px 100px;
+}
+
+.nav a {
+    color: #F6F6F1;
+}
+
+.nav a:hover {
+    color: #3C3C3B;
+}
+
+.login-btn {
+    border: 3px solid  #F6F6F1;
+    border-radius: 30px;
+}
+
+.login-btn:hover {
+    border: none;
+    border-radius: 4px;
+}
+
+a.more-btn, input-btn {
+    color: #F6F6F1;
+    font-size: 21px;
+    padding: 15px 25px 15px 25px;
+    border-radius: 10px;
+}
+
+.paging-btn-wrapper{
+    position: absolute;
+    margin-left: 283px;
+    margin-top: -230px;
+}
+
+a.paging-btn{
+    color: #F6F6F1;
+    padding: 12px 30px 12px 30px;
+    border-radius: 0px;
+    text-shadow: 0 1px 2px rgba(0,0,0,.6);
+}
+
+a.more-btn:hover, .input-btn:hover, .paging-btn:hover{
+    color: #3C3C3B;
+    background: #fff;
+}
+
+a.btn-contact {
+    color: #fff;
+    border-bottom: 2px solid #fff;
+    text-align: center;
+}
+
+.text-caption .carousel-caption{
+    padding: 10px 100px 10px 25px;
+    bottom: -12px;
+    right: 0%;
+    left: 72%;
+}
+
+.text-caption .carousel-caption-paging{
+    margin-bottom: 212px;
+    left: 74%;
+    top: 0%;
+}
+
+.text-caption .carousel-price-tag{
+    left: -45%;
+    top: 84%;
+    bottom: 0%;
+}
+
+.text-caption-single  .single-caption{
+    padding: 10px 100px 10px 25px;
+    bottom: 300px;
+    right: 0%;
+    top: 0%;
+    left: 85%;
+    margin-bottom: 30px;
+}
+
+div.text-caption-single.carousel-inner > img{
+    margin-bottom: 30px;
+}
+
+.contact-box{
+    padding: 5px;
+    padding-left: 100px;
+    width: 50%;
+    margin-top: -100px;
+}
+
+.contact-form-wrapper{
+    min-height: 400px;
+    padding: 30px;
+    width: 80%;
+    margin-top: -200px;
+}
+
+.form{
+    background: #f5f6f1;
+    padding: 25px;
+}
+
+.form-header{
+    text-align: center;
+    background: #3C3C3B;
+    padding: 10px;
+    min-height: 25px;
+}
+
+.img-responsive{
+    min-height: 100px;
+}

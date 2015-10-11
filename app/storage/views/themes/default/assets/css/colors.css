@@ -1,0 +1,79 @@
+/*
+    Created on : Sep 14, 2015, 10:28:31 AM
+    Author     : thom855j
+*/
+
+
+/*
+Colors
+*/
+input[type='radio'] {
+    color: #FA7E3E;
+    background: #FA7E3E;
+}
+
+a {
+    color: #3C3C3B;
+}
+
+a.active {
+    color: #FA7E3E;
+}
+a:hover{
+    color: #FA7E3E;
+}
+
+.base-background{
+    background: #fff;
+}
+
+.base-color{
+    color: #fff;
+}
+
+.base-color-background  {
+    background-color: #F6F6F1;
+}
+
+.base-neutral-background{
+    background: #f5f6f1;
+}
+
+.base-contrast-background {
+    background: #FA7E3E;
+}
+
+.base-contrast-color{
+    color: #FA7E3E;
+}
+
+.base-typo-background {
+    background: #3C3C3B;
+
+}
+
+.base-typo-color {
+    color: #3C3C3B;
+}
+
+
+.pagination>li>a, .pagination>li>span{
+    color: #3C3C3B;
+    font-weight: bold;
+    background-color: #f5f6f1;
+    border: 2px solid #fff;
+}
+
+.pagination>li>a:hover, .pagination>li>span:hover{
+    color: #fff;
+    font-weight: bold;
+    border: 2px solid #fff;
+    background-color: #FA7E3E;
+}
+
+.pagination>li>a.pager-active{
+     color:#fff;
+    font-weight: bold;
+    background-color: #FA7E3E;
+    border: 2px solid #fff;
+}

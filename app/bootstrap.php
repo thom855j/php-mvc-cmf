@@ -1,32 +1,21 @@
 <?php
-/*
- * Bootstrap file for app
+/**
+ * Start includesping
  */
-
-// Project path
-define('PATH_ROOT', dirname(__DIR__) . DIRECTORY_SEPARATOR);
-
-// App path folders
-define('PATH_APP', PATH_ROOT . 'app' . DIRECTORY_SEPARATOR);
-define('PATH_APP_CONTROLLERS', PATH_APP . 'Controllers' . DIRECTORY_SEPARATOR);
-define('PATH_APP_MODELS', PATH_APP . 'Models' . DIRECTORY_SEPARATOR);
-define('PATH_APP_VIEWS', PATH_APP . 'views' . DIRECTORY_SEPARATOR);
-define('PATH_APP_VIEWS_THEMES', PATH_APP_VIEWS . 'themes' . DIRECTORY_SEPARATOR);
-define('PATH_APP_STORAGE', PATH_APP . 'storage' . DIRECTORY_SEPARATOR);
-
-// Public path folders
-define('PATH_PUBLIC', PATH_ROOT . 'public' . DIRECTORY_SEPARATOR);
-define('PATH_PUBLIC_ASSETS', PATH_PUBLIC . 'assets' . DIRECTORY_SEPARATOR);
-define('PATH_PUBLIC_UPLOADS', PATH_PUBLIC . 'uploads' . DIRECTORY_SEPARATOR);
-
-// Vendor path
-define('PATH_VENDOR', PATH_ROOT . 'vendor' . DIRECTORY_SEPARATOR);
-
-// Env setup
-if (APP_DEBUG === TRUE) {
-	ini_set('display_errors', TRUE);
-}
-use WebSupportDK\PHPScrud\DB;
-
-DB::load(DB_TYPE, DB_HOST, DB_NAME, DB_USER, DB_PASS);
+// Absolute project path
+define('ABSPATH', dirname(__DIR__) . DIRECTORY_SEPARATOR);
+require_once ABSPATH. 'app/storage/includes/constants.php';
+// load includes files
+require_once APPINC . 'autoloader.php';
+require_once APPINC . 'app.php';
+require_once APPINC . 'debug.php';
+require_once APPINC . 'database.php';
+require_once APPINC . 'options.php';
+require_once APPINC . 'languages.php';
+require_once APPINC . 'templates.php';
+require_once APPINC . 'themes.php';
+require_once APPINC . 'constants.php';
+require_once APPINC . 'functions.php';
+require_once APPINC . 'cache.php';
+require_once APPINC . 'router.php';
 

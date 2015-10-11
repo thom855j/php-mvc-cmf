@@ -4,7 +4,7 @@
  */
 use WebSupportDK\PHPMvcFramework\Controller;
 
-class ErrorController extends Controller{
+class ErrorsController extends Controller{
 
 	function __construct()
 	{
