@@ -28,20 +28,63 @@ $app->set('config', require BASE_PATH . 'config/' . APP_ENV . '.php');
 
 
 /*
- * Set app options
+  |--------------------------------------------------------------------------
+  | App constants
+  |--------------------------------------------------------------------------
+  |
+  | Set common app constants
+  |
  */
 define('APP_PUBLIC', BASE_PATH . 'public' . DIRECTORY_SEPARATOR);
-define('APP_UPLOAD', APP_PUBLIC . $app->get('config')->filesystem->upload . DIRECTORY_SEPARATOR);
-define('APP_URL', $app->get('config')->app->url);
+define('APP_UPLOAD', APP_PUBLIC . $app->get('config.filesystem.upload') . DIRECTORY_SEPARATOR);
+define('APP_STORAGE', BASE_PATH . 'storage' . DIRECTORY_SEPARATOR);
+
+/*
+ * URL paths
+ */
+define('APP_URL', $app->get('config.app.url'));
 define('APP_ASSET', APP_URL . 'public/assets' . DIRECTORY_SEPARATOR);
 define('APP_COMPONENT', APP_URL . 'public/components' . DIRECTORY_SEPARATOR);
 
 /*
- * Set PHP INI options
+ * Resources path
+ */
+define('APP_RESOURCE', BASE_PATH . 'resources' . DIRECTORY_SEPARATOR);
+define('APP_LANG', APP_RESOURCE . 'lang' . DIRECTORY_SEPARATOR);
+
+/*
+ * Storage paths
+ */
+define('APP_VIEW', APP_RESOURCE . $app->get('config.view.storage') . DIRECTORY_SEPARATOR);
+define('APP_CACHE', APP_STORAGE . $app->get('config.cache.storage') . DIRECTORY_SEPARATOR);
+define('APP_CONTROLLER', BASE_PATH . $app->get('config.router.storage') . DIRECTORY_SEPARATOR);
+
+
+
+/*
+  |--------------------------------------------------------------------------
+  | PHP options
+  |--------------------------------------------------------------------------
+  |
+  | Set common PHP options
+  |
  */
 
-// Set error reportion
-if ($app->get('config')->app->debug) {
+/*
+ * Set default time
+ */
+date_default_timezone_set($app->get('config.app.timezone'));
+
+/*
+ * Set PHP error options
+ */
+// Set custom error reporting
+use App\Exceptions\Handler;
+
+set_exception_handler(array(new Handler, 'exception'));
+
+// Set debug env
+if ($app->get('config.app.debug')) {
 	error_reporting(E_ALL);
 	ini_set('display_errors', TRUE);
 	ini_set('display_startup_errors', TRUE);
@@ -52,9 +95,9 @@ if ($app->get('config')->app->debug) {
 }
 
 // Set error log reporting
-if ($app->get('config')->app->log) {
+if ($app->get('config.app.log')) {
 	ini_set('log_errors', TRUE);
-	ini_set('error_log', BASE_PATH . $app->get('config')->filesystem->log . DIRECTORY_SEPARATOR . 'php-error.log');
+	ini_set('error_log', BASE_PATH . $app->get('config.filesystem.log') . DIRECTORY_SEPARATOR . 'php-error.log');
 } else {
 	ini_set('log_errors', FALSE);
 }
@@ -62,7 +105,7 @@ if ($app->get('config')->app->log) {
 /*
  * Set PHP Session options
  */
-session_save_path(STORAGE_PATH . $app->get('config')->session->file . DIRECTORY_SEPARATOR);
+session_save_path(STORAGE_PATH . $app->get('config.session.file') . DIRECTORY_SEPARATOR);
 if (session_id() == '') {
 	session_cache_limiter(false);
 	session_set_cookie_params(0);
@@ -71,18 +114,62 @@ if (session_id() == '') {
 
 /*
   |--------------------------------------------------------------------------
-  | Basic functions
+  | Language selection
+  |--------------------------------------------------------------------------
+  |
+  | To make a multilingual app we need to setup  language
+  |
+ */
+use WebSupportDK\PHPSecurity\Cookie;
+
+define('APP_LOCALE', $app->get('config.app.locale'));
+define('APP_CHARSET', $app->get('config.app.charset'));
+
+// Set session locale
+if (!Cookie::exists('locale')) {
+	Cookie::set('locale', APP_LOCALE, $app->get('config.session.expiry'));
+}
+
+$app->set('messages', require APP_LANG . APP_LOCALE . '/messages.php');
+
+
+
+/*
+  |--------------------------------------------------------------------------
+  | Basic helper functions
   |--------------------------------------------------------------------------
   |
   | Common functions for easier development (you can add your own here)
   |
  */
 
+function locale()
+{
+
+	return APP_LOCALE;
+}
+
+function trans($string)
+{
+	global $app;
+	return $app->get($string);
+}
+
+function charset()
+{
+	return APP_CHARSET;
+}
+
 function vd($object)
 {
 	echo '<pre>';
 	var_dump($object);
 	echo '</pre>';
+}
+
+function asset($path)
+{
+	return APP_ASSET . $path;
 }
 
 function pr($object)
@@ -113,25 +200,6 @@ function rutime($ru, $rus, $index)
 }
 /*
   |--------------------------------------------------------------------------
-  | Language selection
-  |--------------------------------------------------------------------------
-  |
-  | To make a multilingual app we need to setup  language
-  |
- */
-use WebSupportDK\PHPSecurity\Cookie;
-
-// Set session locale
-if (!Cookie::exists('locale')) {
-	Cookie::set('locale', $app->get('config')->app->locale, $app->get('config')->session->expiry);
-}
-use WebSupportDK\PHPMultilingual\I18n;
-
-// Set lang from cookie
-I18n::set(Cookie::get('locale'));
-
-/*
-  |--------------------------------------------------------------------------
   | Bind Important Interfaces
   |--------------------------------------------------------------------------
   |
@@ -140,35 +208,43 @@ I18n::set(Cookie::get('locale'));
   |
  */
 
-// Set View
-$app->set('View', WebSupportDK\PHPMvcFramework\View::load());
-$app->get('View')->setTemplatePath(BASE_PATH . $app->get('config')->view->storage . DIRECTORY_SEPARATOR);
-$app->get('View')->setFeedbackFile(BASE_PATH . $app->get('config')->view->storage . '/layouts/feedback');
+/*
+ * Set View
+ */
 
-// Set Cache
-if ($app->get('config')->cache->status) {
+$app->set('View', WebSupportDK\PHPMvcFramework\View::load());
+$app->get('View')->setTemplatePath(APP_VIEW);
+$app->get('View')->setFeedbackFile(APP_VIEW . '/layouts/feedback');
+
+/*
+ * Set Cache
+ */
+if ($app->get('config.cache.status')) {
 	$app->set('Cache', new WebSupportDK\PHPFilesystem\Cache());
-	$app->get('Cache')->setDir(STORAGE_PATH . 'framework/cache' . DIRECTORY_SEPARATOR);
-	$app->get('Cache')->setTime($app->get('config')->cache->time);
-	$app->get('Cache')->setExt($app->get('config')->cache->ext);
-	$app->get('Cache')->setIgnore($app->get('config')->cache->ignore);
+	$app->get('Cache')->setDir(APP_CACHE);
+	$app->get('Cache')->setTime($app->get('config.cache.time'));
+	$app->get('Cache')->setExt($app->get('config.cache.ignore'));
+	$app->get('Cache')->setIgnore($app->get('config.cache.ignore'));
 }
 
-// Set DB
-if ($app->get('config')->database->status) {
+/*
+ * Set database
+ */
+if ($app->get('config.cache.status')) {
 	$app->set('DB', WebSupportDK\PHPScrud\DB::load(
-			$app->get('config')->database->driver, $app->get('config')->database->host, $app->get('config')->database->name, $app->get('config')->database->username, $app->get('config')->database->password
+			$app->get('config.database.driver'), $app->get('config.database.host'), $app->get('config.database.name'), $app->get('config.database.username'), $app->get('config.database.password')
 	));
 }
 
-
-// Set Router
+/*
+ * Set Router
+ */
 $app->set('Router', new WebSupportDK\PHPMvcFramework\Router);
 $app->get('Router')->setControllersPath(BASE_PATH . 'app/Controllers' . DIRECTORY_SEPARATOR);
-$app->get('Router')->setDefaultController($app->get('config')->router->{'default controller'});
-$app->get('Router')->setDefaultAction($app->get('config')->router->{'default action'});
-$app->get('Router')->setQueryString($app->get('config')->router->{'query string'});
-$app->get('Router')->setNamespace($app->get('config')->router->{'namespace'});
+$app->get('Router')->setDefaultController($app->get('config.router.controller'));
+$app->get('Router')->setDefaultAction($app->get('config.router.action'));
+$app->get('Router')->setQueryString($app->get('config.router.queryString'));
+$app->get('Router')->setNamespace($app->get('config.router.namespace'));
 
 // Return app
 return $app;

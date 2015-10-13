@@ -7,7 +7,7 @@
 namespace App\Controllers;
 
 use WebSupportDK\PHPMvcFramework\Controller;
-use Models\Pages\PageModel;
+use App\Exceptions\Handler;
 
 class DefaultController extends Controller
 {
@@ -26,8 +26,20 @@ class DefaultController extends Controller
 
 	public function index()
 	{
-		print_r($this);
+		$this->View->render(array(
+			'home'
+			), $this->App);
 	}
 
-
+	public function error($message = 'Hello World')
+	{
+		$test = false;
+		try {
+			if (!$test):
+				throw new Handler($test);
+			endif;
+		} catch (Handler $ex) {
+			error_log($ex->exception($message));
+		}
+	}
 }

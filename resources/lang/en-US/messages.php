@@ -4,6 +4,6 @@
  */
 
 return array(
-	'THEME_WELCOME' => 'This is a test',
+	'welcome' => 'Hello World!',
 );
 

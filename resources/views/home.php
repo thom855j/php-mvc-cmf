@@ -1,23 +1,24 @@
-<?php
-use WebSupportDK\PHPHtml\Form;
-use WebSupportDK\PHPHttp\Url;
+<!DOCTYPE html>
 
-?>
-<h1>Your tasks (<small><a href="<?php e(APP_URL) ?>new">New task</a></small>)</h1>
-<ul>
-		<?php foreach ($this->Data->Post as $post): ?>
-		<li>
-	<?php Form::start(Url::get(), 'post') ?>
-			<input
-				type="checkbox"
-				onclick="this.form.submit()"
-			<?php e($post->ID) ? 'checked' : ' ' ?> />
-			<input type="hidden" name="item" value="<?php e($post->ID) ?>" />
-			<?php e($post->Title) ?> 
-			<small><a href="<?php e(APP_URL) ?>task/delete"> (X)</a></small>
-	<?php Form::end() ?>
+<html lang="<?php e(locale()) ?>">
+	<head>
+		<meta charset="<?php e(charset()) ?>">
 
-		</li>
-<?php endforeach ?>
-</ul>
-<a href="<?php e(APP_URL) ?>auth/logout">Log out</a>
+		<title>Example view</title>
+		<meta name="description" content="Example">
+		<meta name="author" content="thom855j">
+
+		<link rel="stylesheet" href="<?php e(asset('css/styles.css?v=1.0')) ?>" />
+
+		<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		<h1><?php e(trans('messages.welcome')) ?></h1>
+		<p><?php pr($this) ?></p>
+
+		<script src="<?php e(asset('js/scripts.js')) ?>"></script>
+	</body>
+</html>
