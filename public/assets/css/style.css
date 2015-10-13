@@ -1,0 +1,85 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 20-08-2015, 23:32:06
+    Author     : thoma
+*/
+
+/*@import "fonts.css";
+@import "colors.css";
+@import "layout.css";*/
+
+body {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 15px;
+	padding: 20px 0;
+	background: #e1e1e1;
+}
+
+.container{
+	width: 60%;
+	max-width: 300px;
+	margin: 0 auto;
+	background: #ffffff;
+	border: 1px solid #cccccc;
+	padding: 20px;
+	border-radius: 4px;
+	box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+h1 {
+	border-bottom: 1px solid #000;
+	padding-bottom: 15px;
+}
+
+form {
+	margin: 0;
+}
+
+form input {
+	border-radius: 4px;
+	display: block;
+	margin: 0 0 10px 0;
+	border: 1px solid #bbb;
+	background: white;
+	padding: 4px;
+}
+
+form input:last-child {
+	margin: 0;
+}
+
+form input[type=submit]:hover {
+	background: #eee;
+	cursor: pointer;
+}
+
+form input[type=checkbox]{
+	display: inline;
+}
+
+p.error {
+	color: #aa0000;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+ul li {
+	line-height: 40px;
+}
+
+a:link, a:visited {
+	color: #4e7ea7;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}

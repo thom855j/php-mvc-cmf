@@ -7,9 +7,9 @@
 namespace App\Controllers;
 
 use WebSupportDK\PHPMvcFramework\Controller;
-use Models\Pages\PageModel;
+use App\Models\PostsModel;
 
-class DefaultController extends Controller
+class TasksController extends Controller
 {
 
 	// variable for storing view data
@@ -22,12 +22,20 @@ class DefaultController extends Controller
 	{
 		// construct Controller
 		parent::__construct();
+		$this->data['App'] = $this->App->get('config')->app;
 	}
 
 	public function index()
 	{
-		print_r($this);
 	}
-
-
+	
+	public function view(){
+			$task = PostsModel::load()->get(null,array(array('Type', '=', 'task')));
+		$this->data['Data'] = (object) array('Post' => $task);
+		$this->View->render(array(
+			'layouts/header',
+			'home',
+			'layouts/footer'
+		), $this->data);
+	}
 }

@@ -2,6 +2,7 @@
 /** 
  * Error controller
  */
+namespace App\Controllers;
 use WebSupportDK\PHPMvcFramework\Controller;
 
 class ErrorsController extends Controller{

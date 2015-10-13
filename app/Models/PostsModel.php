@@ -1,4 +1,4 @@
-<?php namespace Models;
+<?php namespace App\Models;
 
 use WebSupportDK\PHPMvcFramework\Model;
 
@@ -57,10 +57,10 @@ class PostsModel extends Model
 	}
 
 	// get page by specific search 
-	public function get($where = array(array()), $paging = array(), $options = array())
+	public function get($paging = array(), $where = array(), $options = array())
 	{
 
-		$this->_DB->select(array($this->attributes), $this->table, $where, $options);
+		$this->_DB->select(array($this->attributes), $this->table, $paging, $where, $options);
 		return $this->_DB->results();
 	}
 

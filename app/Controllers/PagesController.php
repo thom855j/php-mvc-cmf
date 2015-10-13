@@ -2,9 +2,11 @@
 /*
  * Page Controller
  */
+namespace App\Controllers;
+
 use WebSupportDK\PHPMvcFramework\Controller;
 use WebSupportDK\PHPHttp\Url;
-use Models\PostsModel;
+use App\Models\PostsModel;
 
 class PagesController extends Controller
 {
@@ -15,15 +17,15 @@ class PagesController extends Controller
 	{
 		parent::__construct();
 		//$this->data['App'] = $this->App;
-		$this->data['Site'] = $this->App->get('config')->site;
-		$this->data['Theme'] = $this->App->get('theme')->Locale->{APPLOCALE};
-		$this->data['Template Files'] = $this->App->get('theme')->{'Template Files'};
-		$this->data['Custom Files'] = $this->App->get('theme')->{'Custom Files'};
+		$this->data['App'] = $this->App->get('config')->app;
+		$this->data['layouts'] = $this->App->get('config')->view->layouts;
+		$this->data['templates'] = $this->App->get('config')->view->templates;
+
 	}
 
 	public function index()
 	{
-		Url::redirect(Url::getRoot('public'). 'pages/name/'.APP_DEFAULT_PAGE);
+		Url::redirect(Url::getRoot('public'). 'pages/name/home');
 	}
 
 	public function id($ID)
@@ -31,7 +33,7 @@ class PagesController extends Controller
 		
 	}
 
-	public function name($uri = APP_DEFAULT_PAGE)
+	public function name($uri = 'home')
 	{
 		$uri = implode('/', func_get_args());
 		$this->_getPost($uri);
@@ -48,7 +50,7 @@ class PagesController extends Controller
 		$this->data['Data'] = (object) array('Post' => $post[0]);
 		//$this->data['Data'] = (object) array('Category'=> $category);
 
-		$this->View->render($this->data['Template Files'], $this->data);
+		$this->View->render($this->data['layouts'], $this->data);
 	}
 
 	public function category()
@@ -73,13 +75,13 @@ class PagesController extends Controller
 
 	private function _pageExists($post)
 	{
-		$templates = (array) $this->data['Template Files'];
+		$layouts = (array) $this->data['layouts'];
 
-		if (in_array($post->Name, $this->data['Custom Files'])):
-			$custom = array_search($post->Name, $this->data['Custom Files']);
-			$index = array_search('index', $templates);
-			$templates[$index] = $this->data['Custom Files'][$custom];
-			$this->data['Template Files'] = $templates;
+		if (in_array($post->Name, $this->data['templates'])):
+			$template = array_search($post->Name, $this->data['templates']);
+			$index = array_search('index', $layouts);
+			$layouts[$index] = $this->data['templates'][$template];
+			$this->data['layouts'] = $layouts;
 		endif;
 	}
 }

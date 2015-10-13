@@ -5,19 +5,54 @@
  * @author thom855j, with inspiration form panique/mini and CodeCourse
  * @license http://opensource.org/licenses/MIT MIT License
  */
+/*
+  |--------------------------------------------------------------------------
+  | Register The Auto Loader
+  |--------------------------------------------------------------------------
+  |
+  | Composer provides a convenient, automatically generated class loader for
+  | our application. We just need to utilize it! We'll simply require it
+  | into the script here so that we don't have to worry about manual
+  | loading any of our classes later on. It feels nice to relax.
+  |
+ */
 
-ini_set('display_errors', true);
-// Start bootstrap of app
-require_once '../app/bootstrap.php';
+require __DIR__ . '/../bootstrap/autoload.php';
+
+/*
+  |--------------------------------------------------------------------------
+  | Turn On The Lights
+  |--------------------------------------------------------------------------
+  |
+  | We need to illuminate PHP development, so let us turn on the lights.
+  | This bootstraps the framework and gets it ready for use, then it
+  | will load up this application so that we can run it and send
+  | the responses back to the browser and delight our users.
+  |
+ */
+
+$app = require_once __DIR__ . '/../bootstrap/app.php';
+
+/*
+  |--------------------------------------------------------------------------
+  | Run The Application
+  |--------------------------------------------------------------------------
+  |
+  | Once we have the application, we can handle the incoming request
+  | through the kernel, and send the associated response back to
+  | the client's browser allowing them to enjoy the creative
+  | and wonderful application we have prepared for them.
+  |
+ */
 
 // mode switch
-switch ($app->get('mode')) {
+switch (APP_ENV) {
 
-	case 'development':
+	case 'local':
 		// start script
 		$rustart = getrusage();
-		$router->run();
-		
+		$app->get('Router')->run();
+
 		// Script end
 		$ru = getrusage();
 		echo "This process used " . rutime($ru, $rustart, "utime") .
@@ -27,16 +62,27 @@ switch ($app->get('mode')) {
 		break;
 
 	case 'production':
-		$cache->setUrl(WebSupportDK\PHPHttp\Url::get());
-		$cache->start();
-		$router->run();
-		$cache->stop();
+		$app->get('Cache')->setUrl(WebSupportDK\PHPHttp\Url::get());
+		$app->get('Cache')->start();
+		$app->get('Router')->run();
+		$app->get('Cache')->stop();
 		break;
 
 	default:
-		$router->run();
+		$app->get('Router')->run();
 		break;
 }
 
-
-require_once 'errors.php';
+/*
+ * Custom header errors handeling
+ */
+//use WebSupportDK\PHPHttp\Url;
+//
+//switch (Url::getError()) {
+//	case 404:
+//		Url::redirect(Url::getRoot('public') . 'errors/code/404');
+//		break;
+//
+//	default:
+//		break;
+//}
