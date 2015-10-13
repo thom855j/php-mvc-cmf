@@ -232,7 +232,11 @@ if ($app->get('config.cache.status')) {
  */
 if ($app->get('config.cache.status')) {
 	$app->set('DB', WebSupportDK\PHPScrud\DB::load(
-			$app->get('config.database.driver'), $app->get('config.database.host'), $app->get('config.database.name'), $app->get('config.database.username'), $app->get('config.database.password')
+		$app->get('config.database.driver'), 
+		$app->get('config.database.host'), 
+		$app->get('config.database.name'), 
+		$app->get('config.database.username'), 
+		$app->get('config.database.password')
 	));
 }
 
