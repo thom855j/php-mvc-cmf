@@ -132,7 +132,53 @@ if (!Cookie::exists('locale')) {
 
 $app->set('messages', require APP_LANG . APP_LOCALE . '/messages.php');
 
+/*
+  |--------------------------------------------------------------------------
+  | Bind Important Interfaces
+  |--------------------------------------------------------------------------
+  |
+  | Next, we need to bind some important interfaces into the container so
+  | we will be able to resolve them when needed.
+  |
+ */
 
+/*
+ * Set View
+ */
+
+$app->set('View', WebSupportDK\PHPMvcFramework\View::load());
+$app->get('View')->setTemplatePath(APP_VIEW);
+$app->get('View')->setFeedbackFile(APP_VIEW . '/layouts/feedback');
+
+/*
+ * Set Cache
+ */
+if ($app->get('config.cache.status')) {
+	$app->set('Cache', new WebSupportDK\PHPFilesystem\Cache());
+	$app->get('Cache')->setDir(APP_CACHE);
+	$app->get('Cache')->setTime($app->get('config.cache.time'));
+	$app->get('Cache')->setExt($app->get('config.cache.ignore'));
+	$app->get('Cache')->setIgnore($app->get('config.cache.ignore'));
+}
+
+/*
+ * Set database
+ */
+if ($app->get('config.cache.status')) {
+	$app->set('DB', WebSupportDK\PHPScrud\DB::load(
+			$app->get('config.database.driver'), $app->get('config.database.host'), $app->get('config.database.name'), $app->get('config.database.username'), $app->get('config.database.password')
+	));
+}
+
+/*
+ * Set Router
+ */
+$app->set('Router', new WebSupportDK\PHPMvcFramework\Router);
+$app->get('Router')->setControllersPath(BASE_PATH . 'app/Controllers' . DIRECTORY_SEPARATOR);
+$app->get('Router')->setDefaultController($app->get('config.router.controller'));
+$app->get('Router')->setDefaultAction($app->get('config.router.action'));
+$app->get('Router')->setQueryString($app->get('config.router.queryString'));
+$app->get('Router')->setNamespace($app->get('config.router.namespace'));
 
 /*
   |--------------------------------------------------------------------------
@@ -142,6 +188,24 @@ $app->set('messages', require APP_LANG . APP_LOCALE . '/messages.php');
   | Common functions for easier development (you can add your own here)
   |
  */
+
+function app_set($name, $value)
+{
+	global $app;
+	return $app->set($name, $value);
+}
+
+function app_get($string)
+{
+	global $app;
+	return $app->get($string);
+}
+
+function config($string)
+{
+	global $app;
+	return $app->get("config.{$string}");
+}
 
 function locale()
 {
@@ -198,57 +262,5 @@ function rutime($ru, $rus, $index)
 {
 	return ($ru["ru_$index.tv_sec"] * 1000 + intval($ru["ru_$index.tv_usec"] / 1000)) - ($rus["ru_$index.tv_sec"] * 1000 + intval($rus["ru_$index.tv_usec"] / 1000));
 }
-/*
-  |--------------------------------------------------------------------------
-  | Bind Important Interfaces
-  |--------------------------------------------------------------------------
-  |
-  | Next, we need to bind some important interfaces into the container so
-  | we will be able to resolve them when needed.
-  |
- */
-
-/*
- * Set View
- */
-
-$app->set('View', WebSupportDK\PHPMvcFramework\View::load());
-$app->get('View')->setTemplatePath(APP_VIEW);
-$app->get('View')->setFeedbackFile(APP_VIEW . '/layouts/feedback');
-
-/*
- * Set Cache
- */
-if ($app->get('config.cache.status')) {
-	$app->set('Cache', new WebSupportDK\PHPFilesystem\Cache());
-	$app->get('Cache')->setDir(APP_CACHE);
-	$app->get('Cache')->setTime($app->get('config.cache.time'));
-	$app->get('Cache')->setExt($app->get('config.cache.ignore'));
-	$app->get('Cache')->setIgnore($app->get('config.cache.ignore'));
-}
-
-/*
- * Set database
- */
-if ($app->get('config.cache.status')) {
-	$app->set('DB', WebSupportDK\PHPScrud\DB::load(
-		$app->get('config.database.driver'), 
-		$app->get('config.database.host'), 
-		$app->get('config.database.name'), 
-		$app->get('config.database.username'), 
-		$app->get('config.database.password')
-	));
-}
-
-/*
- * Set Router
- */
-$app->set('Router', new WebSupportDK\PHPMvcFramework\Router);
-$app->get('Router')->setControllersPath(BASE_PATH . 'app/Controllers' . DIRECTORY_SEPARATOR);
-$app->get('Router')->setDefaultController($app->get('config.router.controller'));
-$app->get('Router')->setDefaultAction($app->get('config.router.action'));
-$app->get('Router')->setQueryString($app->get('config.router.queryString'));
-$app->get('Router')->setNamespace($app->get('config.router.namespace'));
-
 // Return app
 return $app;

@@ -30,16 +30,4 @@ class DefaultController extends Controller
 			'home'
 			), $this->App);
 	}
-
-	public function error($message = 'Hello World')
-	{
-		$test = false;
-		try {
-			if (!$test):
-				throw new Handler($test);
-			endif;
-		} catch (Handler $ex) {
-			error_log($ex->exception($message));
-		}
-	}
 }
