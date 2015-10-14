@@ -19,10 +19,11 @@ return array(
 		'table' => 'users'
 	),
 	'session' => array(
+		'name' => 'session_id',
 		'file' => 'framework/sessions',
 		'table' => 'sessions',
 		'expiry' => 1800,
-		'cookie' => uniqid(),
+		'cookie' => 'session',
 		'secure' => TRUE
 	),
 	'router' => array(

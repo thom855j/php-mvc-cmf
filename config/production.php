@@ -5,7 +5,7 @@
 
 return array(
 	'app' => array(
-		'env' => 'local',
+		'env' => 'production',
 		'debug' => FALSE,
 		'log' => TRUE,
 		'url' => defined('APP_URL') ? APP_URL : 'http://localhost/GitHub/WebSupport-DK/php-mvc-cmf/',
@@ -19,10 +19,11 @@ return array(
 		'table' => 'users'
 	),
 	'session' => array(
+		'name' => 'session_id',
 		'file' => 'framework/sessions',
 		'table' => 'sessions',
 		'expiry' => 1800,
-		'cookie' => uniqid(),
+		'cookie' => 'session',
 		'secure' => TRUE
 	),
 	'router' => array(
@@ -50,7 +51,7 @@ return array(
 	),
 	'cache' => array(
 		'storage' => 'framework/cache',
-		'status' => FALSE,
+		'status' => TRUE,
 		'ext' => 'html',
 		'ignore' => array(),
 	),

@@ -109,6 +109,7 @@ session_save_path(STORAGE_PATH . $app->get('config.session.file') . DIRECTORY_SE
 if (session_id() == '') {
 	session_cache_limiter(false);
 	session_set_cookie_params(0);
+	session_name($app->get('config.session.name'));
 	session_start();
 }
 
@@ -148,7 +149,7 @@ $app->set('messages', require APP_LANG . APP_LOCALE . '/messages.php');
 
 $app->set('View', WebSupportDK\PHPMvcFramework\View::load());
 $app->get('View')->setTemplatePath(APP_VIEW);
-$app->get('View')->setFeedbackFile(APP_VIEW . '/layouts/feedback');
+$app->get('View')->setFeedbackFile(APP_VIEW . 'layouts/feedback');
 
 /*
  * Set Cache
@@ -157,7 +158,7 @@ if ($app->get('config.cache.status')) {
 	$app->set('Cache', new WebSupportDK\PHPFilesystem\Cache());
 	$app->get('Cache')->setDir(APP_CACHE);
 	$app->get('Cache')->setTime($app->get('config.cache.time'));
-	$app->get('Cache')->setExt($app->get('config.cache.ignore'));
+	$app->get('Cache')->setExt($app->get('config.cache.ext'));
 	$app->get('Cache')->setIgnore($app->get('config.cache.ignore'));
 }
 
@@ -166,7 +167,11 @@ if ($app->get('config.cache.status')) {
  */
 if ($app->get('config.cache.status')) {
 	$app->set('DB', WebSupportDK\PHPScrud\DB::load(
-			$app->get('config.database.driver'), $app->get('config.database.host'), $app->get('config.database.name'), $app->get('config.database.username'), $app->get('config.database.password')
+			$app->get('config.database.driver'), 
+			$app->get('config.database.host'), 
+			$app->get('config.database.name'), 
+			$app->get('config.database.username'), 
+			$app->get('config.database.password')
 	));
 }
 
