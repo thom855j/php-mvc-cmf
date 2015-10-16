@@ -5,11 +5,12 @@
 
 return array(
 	'app' => array(
+		'name' => 'Production app',
 		'env' => 'production',
 		'debug' => FALSE,
 		'log' => TRUE,
-		'url' => env('APP_URL','http://localhost/GitHub/WebSupport-DK/php-mvc-cmf/'),
-		'key' => env('APP_KEY','se63UO9eSdaAx6e5Cq9PjQTIyW3yw6k3'),
+		'url' => env('APP_URL', 'http://localhost/GitHub/WebSupport-DK/php-mvc-cmf/'),
+		'key' => env('APP_KEY', 'se63UO9eSdaAx6e5Cq9PjQTIyW3yw6k3'),
 		'locale' => 'en-US',
 		'timezone' => 'UTC',
 		'format' => 'H:i',
@@ -35,7 +36,7 @@ return array(
 	),
 	'database' => array(
 		'status' => FALSE,
-		'connection' => env('DB_CONNECTION', 'mysql'),
+		'driver' => env('DB_DRIVER', 'mysql'),
 		'host' => env('DB_HOST', '127.0.0.1'),
 		'name' => env('DB_DATABSE','php-mvc-cmf'),
 		'username' =>  env('DB_USERNAME', 'root'),
@@ -50,17 +51,19 @@ return array(
 		'templates' => array()
 	),
 	'cache' => array(
-		'status' => TRUE,
+		'status' => FALSE,
 		'storage' => 'framework/cache',
 		'ext' => 'html',
 		'ignore' => array(get_url() .'errors/code/404')
 	),
 	'filesystem' => array(
-		'upload' => 'public/uploads',
+		'upload' => 'uploads',
 		'log' => 'storage/logs'
 	),
 	'mail' => array(
-		'driver' => env('MAIL_DRIVER', 'smtp'),
+		'status' => TRUE,
+		'driver' => env('MAIL_DRIVER', 'PHPMailer'),
+		'vendor' => env('MAIL_VENDOR', 'vendor/phpmailer/phpmailer/PHPMailerAutoload'),
 		'host' => env('MAIL_HOST', 'smtp.gmail.com'),
 		'port' => env('MAIL_PORT', 587),
 		'username' => env('MAIL_USERNAME', 'demo@gmail.com'),

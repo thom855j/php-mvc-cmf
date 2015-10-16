@@ -145,16 +145,17 @@ $app->set('messages', require APP_LANG . APP_LOCALE . '/messages.php');
 /*
  * Set View
  */
-
-$app->set('View', WebSupportDK\PHPMvcFramework\View::load());
+use WebSupportDK\PHPMvcFramework\View;
+$app->set('View', View::load());
 $app->get('View')->setTemplatePath(APP_VIEW);
 $app->get('View')->setFeedbackFile(APP_VIEW . 'layouts/feedback');
 
 /*
  * Set Cache
  */
+use WebSupportDK\PHPFilesystem\Cache;
 if ($app->get('config.cache.status')) {
-	$app->set('Cache', new WebSupportDK\PHPFilesystem\Cache());
+	$app->set('Cache', new Cache());
 	$app->get('Cache')->setDir(APP_CACHE);
 	$app->get('Cache')->setTime($app->get('config.cache.time'));
 	$app->get('Cache')->setExt($app->get('config.cache.ext'));
@@ -164,8 +165,9 @@ if ($app->get('config.cache.status')) {
 /*
  * Set database
  */
+use WebSupportDK\PHPScrud\DB;
 if ($app->get('config.database.status')) {
-	$app->set('DB', WebSupportDK\PHPScrud\DB::load(
+	$app->set('DB', DB::load(
 		$app->get('config.database.driver'), 
 		$app->get('config.database.host'), 
 		$app->get('config.database.name'), 
@@ -173,6 +175,34 @@ if ($app->get('config.database.status')) {
 		$app->get('config.database.password')
 
 	));
+}
+
+/*
+ * Set mailer
+ */
+
+if ($app->get('config.mail.status')) {
+	if($app->get('config.mail.driver') == 'PHPMailer'){
+// Get mail driver
+req($app->get('__DIR__') . $app->get('config.mail.vendor'));
+// Set driver
+$driver = $app->get('config.mail.driver');
+$app->set('Mailer', new $driver);
+$app->get('Mailer')->isSMTP();
+$app->get('Mailer')->CharSet = $app->get('config.app.charset');
+$app->get('Mailer')->Host = $app->get('config.mail.host');
+$app->get('Mailer')->SMTPAuth = true;
+$app->get('Mailer')->SMTPSecure = $app->get('config.mail.encryption');
+$app->get('Mailer')->Port = $app->get('config.mail.port');
+$app->get('Mailer')->Username = $app->get('config.mail.username');
+$app->get('Mailer')->Password = $app->get('config.mail.password');
+$app->get('Mailer')->setFrom($app->get('config.mail.username'), $app->get('config.app.name'));
+$app->get('Mailer')->isHTML( true );
+		// Set debug
+		if($app->get('config.app.debug')){
+		$app->get('Mailer')->SMTPDebug = TRUE;
+		}
+	}
 }
 
 /*
@@ -214,11 +244,20 @@ function env($constant, $string)
   return defined($constant) ? constant($constant) : $string;
 }
 
+function get_view($string)
+{
+	return APP_VIEW . $string . '.php';
+}
 // Get something from config
-function config($string)
+function get_config($string)
 {
 	global $app;
 	return $app->get("config.{$string}");
+}
+
+function get_upload($string)
+{
+	return APP_UPLOAD . $string;
 }
 
 // Return locale lang
