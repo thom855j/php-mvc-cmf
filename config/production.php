@@ -53,7 +53,7 @@ return array(
 		'status' => TRUE,
 		'storage' => 'framework/cache',
 		'ext' => 'html',
-		'ignore' => array(),
+		'ignore' => array(get_url() .'errors/code/404')
 	),
 	'filesystem' => array(
 		'upload' => 'public/uploads',

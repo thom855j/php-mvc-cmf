@@ -76,6 +76,7 @@ date_default_timezone_set($app->get('config.app.timezone'));
 /*
  * Set PHP error options
  */
+
 // Set custom error reporting
 use App\Exceptions\Handler;
 
@@ -255,6 +256,48 @@ function vd($object)
 	echo '<pre>';
 	var_dump($object);
 	echo '</pre>';
+}
+
+// Redirect http errors
+function http_error_handler(){
+  /*
+  * Custom header errors handeling
+  */
+  switch (WebSupportDK\PHPHttp\Url::getError())
+  {
+  case 404:
+    return http_redirect_to('errors/code/404');
+    break;
+
+    case 500:
+    return http_redirect_to('errors/code/500');
+    break;
+
+  default:
+    break;
+  }
+}
+
+// Return last visited url
+function get_http_referer()
+{
+	return WebSupportDK\PHPHttp\Url::getPrevious();
+}
+
+// Redirect to string
+function http_redirect_to($string)
+{
+	return WebSupportDK\PHPHttp\Url::redirect(WebSupportDK\PHPHttp\Url::getRoot('public') . $string);
+}
+
+// Return current url
+function get_current_url(){
+	return WebSupportDK\PHPHttp\Url::get();
+}
+
+// Return current url
+function get_url(){
+	return WebSupportDK\PHPHttp\Url::getRoot('public');
 }
 
 // Get a string from the public url

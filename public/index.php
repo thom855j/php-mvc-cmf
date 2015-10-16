@@ -46,43 +46,40 @@ $app = require_once __DIR__ . '/../bootstrap/app.php';
  */
 
 // mode switch
-switch (APP_ENV) {
+switch (APP_ENV)
+{
+case 'local':
 
-	case 'local':
-		// start script
-		$rustart = getrusage();
-		$app->get('Router')->run();
+  // start script
 
-		// Script end
-		$ru = getrusage();
-		echo "This process used " . rutime($ru, $rustart, "utime") .
-		" ms for its computations\n";
-		echo "It spent " . rutime($ru, $rustart, "stime") .
-		" ms in system calls\n";
-		break;
+  $rustart = getrusage();
+  $app->get('Router')->run();
+  // Check for http errors
+  http_error_handler();
 
-	case 'production':
-		$app->get('Cache')->setUrl(WebSupportDK\PHPHttp\Url::get());
-		$app->get('Cache')->start();
-		$app->get('Router')->run();
-		$app->get('Cache')->stop();
-		break;
+  // Script end
 
-	default:
-		$app->get('Router')->run();
-		break;
-}
+  $ru = getrusage();
+  echo "This process used " . rutime($ru, $rustart, "utime") . " ms for its computations\n";
+  echo "It spent " . rutime($ru, $rustart, "stime") . " ms in system calls\n";
+  break;
 
-/*
- * Custom header errors handeling
- */
-use WebSupportDK\PHPHttp\Url;
+case 'production':
+  // Get url
+  $app->get('Cache')->setUrl(get_current_url());
+  // Start cache
+  $app->get('Cache')->start();
+  // Run Router
+  $app->get('Router')->run();
+  // Check for http errors
+  http_error_handler();
+  // End and save cache if no errors
+  $app->get('Cache')->stop();
+  break;
 
-switch (Url::getError()) {
-	case 404:
-		Url::redirect(Url::getRoot('public') . 'errors/code/404');
-		break;
+default:
+  // Default run
+  $app->get('Router')->run();
+  break;
+  }
 
-	default:
-		break;
-}

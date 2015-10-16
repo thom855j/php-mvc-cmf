@@ -13,7 +13,7 @@ class Handler extends Exception
 	{
 		//error message
 		$errorMsg = 'Error on line ' . $this->getLine() . ' in ' . $this->getFile()
-			. ': <b>' . $this->getMessage() . "</b> $message";
+			. ': <b>' . $this->getMessage() . "</b> {$message}";
 		return $errorMsg;
 	}
 }

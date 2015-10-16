@@ -7,7 +7,6 @@
 namespace App\Controllers;
 
 use WebSupportDK\PHPMvcFramework\Controller;
-use WebSupportDK\PHPHttp\Url;
 use App\Exceptions\Handler;
 
 class ErrorsController extends Controller
@@ -23,20 +22,27 @@ class ErrorsController extends Controller
 	{
 		// construct Controller
 		parent::__construct();
+		$this->data['url'] = get_http_referer();
 	}
 
-	public function index($code = 404)
+	public function index()
 	{
-		$this->View->render(array(
-			"errors/{$code}"
+		
+	return	$this->View->render(array(
+			"errors/404"
 			));
 	}
 
 	public function code($code)
 	{
-		$this->View->render(array(
+		if(file_exists(APP_VIEW . "errors/{$code}.php")){
+
+		return $this->View->render(array(
 			"errors/{$code}"
-			), array('url' => Url::getPrevious()));
+			), $this->data);
+		}
+		
+		return http_redirect_to('errors/code/500');
 	}
 
 	public function exception($message)

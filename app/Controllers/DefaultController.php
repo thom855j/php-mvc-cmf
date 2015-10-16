@@ -22,12 +22,15 @@ class DefaultController extends Controller
 	{
 		// construct Controller
 		parent::__construct();
+		// Parse default data about app
+		$this->data['App'] = $this->App;
 	}
 
 	public function index()
 	{
-		$this->View->render(array(
+	return $this->View->render(array(
 			'home'
-			), $this->App);
+			), $this->data);
 	}
+
 }

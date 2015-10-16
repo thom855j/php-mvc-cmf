@@ -54,7 +54,7 @@ return array(
 		'storage' => 'framework/cache',
 		'status' => FALSE,
 		'ext' => 'html',
-		'ignore' => array(),
+		'ignore' => array(get_url() .'errors/code/404')
 	),
 	'filesystem' => array(
 		'upload' => 'public/uploads',
