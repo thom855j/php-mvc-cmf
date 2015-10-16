@@ -2,7 +2,7 @@
 /**
  * PHP MVC CMF
  *
- * @author thom855j, with inspiration form panique/mini and CodeCourse
+ * @author thom855j, with inspiration from Laravel
  * @license http://opensource.org/licenses/MIT MIT License
  */
 /*

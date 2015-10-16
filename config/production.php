@@ -8,8 +8,8 @@ return array(
 		'env' => 'production',
 		'debug' => FALSE,
 		'log' => TRUE,
-		'url' => defined('APP_URL') ? APP_URL : 'http://localhost/GitHub/WebSupport-DK/php-mvc-cmf/',
-		'key' => defined('APP_KEY') ? APP_KEY : 'se63UO9eSdaAx6e5Cq9PjQTIyW3yw6k3',
+		'url' => env('APP_URL','http://localhost/GitHub/WebSupport-DK/php-mvc-cmf/'),
+		'key' => env('APP_KEY','se63UO9eSdaAx6e5Cq9PjQTIyW3yw6k3'),
 		'locale' => 'en-US',
 		'timezone' => 'UTC',
 		'format' => 'H:i',
@@ -34,15 +34,15 @@ return array(
 		'namespace' => 'App\\Controllers'
 	),
 	'database' => array(
-		'status' => TRUE,
-		'driver' => defined('DB_CONNECTION') ? DB_CONNECTION : 'mysql',
-		'host' => defined('DB_HOST') ? DB_HOST : '127.0.0.1',
-		'name' => defined('DB_DATABASE') ? DB_DATABASE : 'php-mvc-cmf',
-		'username' => defined('DB_USERNAME') ? DB_USERNAME : 'root',
-		'password' => defined('DB_PASSWORD') ? DB_PASSWORD : 'root',
+		'status' => FALSE,
+		'connection' => env('DB_CONNECTION', 'mysql'),
+		'host' => env('DB_HOST', '127.0.0.1'),
+		'name' => env('DB_DATABSE','php-mvc-cmf'),
+		'username' =>  env('DB_USERNAME', 'root'),
+		'password' => env('DB_PASSWORD', 'root'),
 		'charset' => 'utf-8',
 		'collation' => '',
-		'prefix' => defined('DB_PREFIX') ? DB_PREFIX : '',
+		'prefix' => env('DB_PREFIX','')
 	),
 	'view' => array(
 		'storage' => 'views',
@@ -50,8 +50,8 @@ return array(
 		'templates' => array()
 	),
 	'cache' => array(
-		'storage' => 'framework/cache',
 		'status' => TRUE,
+		'storage' => 'framework/cache',
 		'ext' => 'html',
 		'ignore' => array(),
 	),
@@ -60,12 +60,12 @@ return array(
 		'log' => 'storage/logs'
 	),
 	'mail' => array(
-		'driver' => defined('MAIL_DRIVER') ? MAIL_DRIVER : 'smtp',
-		'host' => defined('MAIL_HOST') ? MAIL_HOST : 'smtp.gmail.com',
-		'port' => defined('MAIL_PORT') ? MAIL_PORT : 587,
-		'username' => defined('MAIL_USERNAME') ? MAIL_USERNAME : 'demo@gmail.com',
-		'password' => defined('MAIL_PASSWORD') ? MAIL_PASSWORD : 'demo123',
-		'encryption' => defined('MAIL_ENCRYPTION') ? MAIL_ENCRYPTION : 'tls'
+		'driver' => env('MAIL_DRIVER', 'smtp'),
+		'host' => env('MAIL_HOST', 'smtp.gmail.com'),
+		'port' => env('MAIL_PORT', 587),
+		'username' => env('MAIL_USERNAME', 'demo@gmail.com'),
+		'password' => env('MAIL_PASSWORD', 'demo123'),
+		'encryption' => env('MAIL_ENCRYPTION', 'tls')
 	),
 );
 

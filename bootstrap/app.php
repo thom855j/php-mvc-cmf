@@ -26,7 +26,6 @@ foreach (parse_ini_file(BASE_PATH . '.env.ini') as $key => $value) {
 // Set config depending on env
 $app->set('config', require BASE_PATH . 'config/' . APP_ENV . '.php');
 
-
 /*
   |--------------------------------------------------------------------------
   | App constants
@@ -165,7 +164,7 @@ if ($app->get('config.cache.status')) {
 /*
  * Set database
  */
-if ($app->get('config.cache.status')) {
+if ($app->get('config.database.status')) {
 	$app->set('DB', WebSupportDK\PHPScrud\DB::load(
 		$app->get('config.database.driver'), 
 		$app->get('config.database.host'), 
@@ -195,41 +194,63 @@ $app->get('Router')->setNamespace($app->get('config.router.namespace'));
   |
  */
 
+// Set something to app
 function app_set($name, $value)
 {
 	global $app;
 	return $app->set($name, $value);
 }
 
+// Get something from app
 function app_get($string)
 {
 	global $app;
 	return $app->get($string);
 }
 
+// Set env varibale from constant or use default string
+function env($constant, $string)
+{
+  return defined($constant) ? constant($constant) : $string;
+}
+
+// Get something from config
 function config($string)
 {
 	global $app;
 	return $app->get("config.{$string}");
 }
 
+// Return locale lang
 function locale()
 {
 
 	return APP_LOCALE;
 }
 
+// Translate a string
 function trans($string)
 {
 	global $app;
 	return $app->get($string);
 }
 
+// Return app charset
 function charset()
 {
 	return APP_CHARSET;
 }
 
+// Die and dump object
+function dd($object)
+{
+	echo '<pre>';
+	var_dump($object);
+	echo '</pre>';
+	die();
+}
+
+// Just var_dump object
 function vd($object)
 {
 	echo '<pre>';
@@ -237,11 +258,13 @@ function vd($object)
 	echo '</pre>';
 }
 
+// Get a string from the public url
 function asset($path)
 {
 	return APP_ASSET . $path;
 }
 
+// print_r an object
 function pr($object)
 {
 	echo '<pre>';
@@ -249,24 +272,29 @@ function pr($object)
 	echo '</pre>';
 }
 
+// Echo and escape string
 function e($string)
 {
 	echo htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
 }
 
+// Include a file
 function inc($path)
 {
 	include_once $path . '.php';
 }
 
+// Require a file
 function req($path)
 {
 	require_once $path . '.php';
 }
 
+// Output runtime of app
 function rutime($ru, $rus, $index)
 {
 	return ($ru["ru_$index.tv_sec"] * 1000 + intval($ru["ru_$index.tv_usec"] / 1000)) - ($rus["ru_$index.tv_sec"] * 1000 + intval($rus["ru_$index.tv_usec"] / 1000));
 }
+
 // Return app
 return $app;
