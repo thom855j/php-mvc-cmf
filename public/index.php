@@ -60,13 +60,13 @@ case 'local':
   // Script end
 
   $ru = getrusage();
-  echo "This process used " . rutime($ru, $rustart, "utime") . " ms for its computations\n";
+  echo "<br>This process used " . rutime($ru, $rustart, "utime") . " ms for its computations\n";
   echo "It spent " . rutime($ru, $rustart, "stime") . " ms in system calls\n";
   break;
 
 case 'production':
   // Get url
-  $app->get('Cache')->setUrl(get_current_url());
+  $app->get('Cache')->setUrl(current_url());
   // Start cache
   $app->get('Cache')->start();
   // Run Router

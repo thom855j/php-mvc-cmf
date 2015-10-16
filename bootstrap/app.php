@@ -121,16 +121,20 @@ if (session_id() == '') {
   |
  */
 use WebSupportDK\PHPSecurity\Cookie;
-
+use WebSupportDK\PHPSecurity\Session;
 define('APP_LOCALE', $app->get('config.app.locale'));
 define('APP_CHARSET', $app->get('config.app.charset'));
 
+// Set default locale
+Session::set('locale',APP_LOCALE);
+
 // Set session locale
-if (!Cookie::exists('locale')) {
-	Cookie::set('locale', APP_LOCALE, $app->get('config.session.expiry'));
+if (Cookie::exists('locale')) {
+	$app->set('messages', require APP_LANG . Cookie::get('locale') . '/messages.php');
+} else {
+	$app->set('messages', require APP_LANG . Session::get('locale') . '/messages.php');
 }
 
-$app->set('messages', require APP_LANG . APP_LOCALE . '/messages.php');
 
 /*
   |--------------------------------------------------------------------------
@@ -178,17 +182,28 @@ if ($app->get('config.database.status')) {
 }
 
 /*
+ * Set auth
+ */
+ use WebSupportDK\PHPAuthFramework\Auth;
+ if($app->get('config.auth.status')){
+ 	$app->set('Auth', Auth::load());
+ 	$app->get('Auth')->setAttribute('db',$app->get('DB'));
+ 	$app->get('Auth')->setAttribute('token',$app->get('config.app.key'));
+ 	$app->get('Auth')->setAttribute('sessionName',$app->get('config.session.name'));
+ }
+
+/*
  * Set mailer
  */
-
 if ($app->get('config.mail.status')) {
-	if($app->get('config.mail.driver') == 'PHPMailer'){
+
 // Get mail driver
-req($app->get('__DIR__') . $app->get('config.mail.vendor'));
+req($app->get('__DIR__') . 'vendor/phpmailer/phpmailer/PHPMailerAutoload');
 // Set driver
-$driver = $app->get('config.mail.driver');
-$app->set('Mailer', new $driver);
-$app->get('Mailer')->isSMTP();
+$app->set('Mailer', new PHPMailer);
+if(!is_null($app->get('config.mail.driver'))){
+	$app->get('Mailer')->isSMTP();
+	}
 $app->get('Mailer')->CharSet = $app->get('config.app.charset');
 $app->get('Mailer')->Host = $app->get('config.mail.host');
 $app->get('Mailer')->SMTPAuth = TRUE;
@@ -199,11 +214,11 @@ $app->get('Mailer')->Password = $app->get('config.mail.password');
 $app->get('Mailer')->setFrom($app->get('config.mail.username'), $app->get('config.app.name'));
 $app->get('Mailer')->isHTML( TRUE );
 		// Set debug
-		if($app->get('config.app.debug')){
+if($app->get('config.app.debug')){
 		$app->get('Mailer')->SMTPDebug = TRUE;
-		}
 	}
 }
+
 
 /*
  * Set Router
@@ -224,18 +239,15 @@ $app->get('Router')->setNamespace($app->get('config.router.namespace'));
   |
  */
 
-// Set something to app
-function app_set($name, $value)
+// Get or set something to/from app
+function app($name, $value = null)
 {
 	global $app;
-	return $app->set($name, $value);
-}
-
-// Get something from app
-function app_get($string)
-{
-	global $app;
-	return $app->get($string);
+	if(!is_null($value))
+	{
+		return $app->set($name, $value);
+	}
+	return $app->get($name);
 }
 
 // Set env varibale from constant or use default string
@@ -244,18 +256,20 @@ function env($constant, $string)
   return defined($constant) ? constant($constant) : $string;
 }
 
-function get_view($string)
+// Get a view from the resources folder
+function view($string)
 {
-	return APP_VIEW . $string . '.php';
+	req(APP_VIEW . $string);
 }
+
 // Get something from config
-function get_config($string)
+function config($string)
 {
 	global $app;
 	return $app->get("config.{$string}");
 }
 
-function get_upload($string)
+function uploaded_file($string)
 {
 	return APP_UPLOAD . $string;
 }
@@ -286,7 +300,7 @@ function dd($object)
 	echo '<pre>';
 	var_dump($object);
 	echo '</pre>';
-	die();
+	die;
 }
 
 // Just var_dump object
@@ -295,6 +309,7 @@ function vd($object)
 	echo '<pre>';
 	var_dump($object);
 	echo '</pre>';
+	exit;
 }
 
 // Redirect http errors
@@ -302,14 +317,15 @@ function http_error_handler(){
   /*
   * Custom header errors handeling
   */
-  switch (WebSupportDK\PHPHttp\Url::getError())
+
+  switch (http_response_code())
   {
   case 404:
-    return http_redirect_to('errors/code/404');
+    return redirect('errors/code/404/');
     break;
 
     case 500:
-    return http_redirect_to('errors/code/500');
+    return redirect('errors/code/500');
     break;
 
   default:
@@ -318,31 +334,42 @@ function http_error_handler(){
 }
 
 // Return last visited url
-function get_http_referer()
+function http_referer()
 {
 	return WebSupportDK\PHPHttp\Url::getPrevious();
 }
 
 // Redirect to string
-function http_redirect_to($string)
+function redirect($string = null)
 {
 	return WebSupportDK\PHPHttp\Url::redirect(WebSupportDK\PHPHttp\Url::getRoot('public') . $string);
 }
 
+function back()
+{
+		return redirect(http_referer());
+}
+
 // Return current url
-function get_current_url(){
+function current_url(){
 	return WebSupportDK\PHPHttp\Url::get();
 }
 
 // Return current url
-function get_url(){
-	return WebSupportDK\PHPHttp\Url::getRoot('public');
+function url($path = null){
+	return WebSupportDK\PHPHttp\Url::getRoot('public') . $path;
 }
 
-// Get a string from the public url
+// Get an asset from the public url
 function asset($path)
 {
 	return APP_ASSET . $path;
+}
+
+// Get a component from public url
+function component($path)
+{
+	return APP_COMPONENT . $path;
 }
 
 // print_r an object
@@ -351,6 +378,7 @@ function pr($object)
 	echo '<pre>';
 	print_r($object);
 	echo '</pre>';
+	exit;
 }
 
 // Echo and escape string

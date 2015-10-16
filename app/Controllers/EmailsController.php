@@ -27,7 +27,7 @@ class EmailsController extends Controller
 
 	public function index()
 	{
-	return http_redirect_to(get_config('router.controller'));
+	return redirect(config('router.controller'));
 	}
 
 	public function send($email)
@@ -36,10 +36,10 @@ class EmailsController extends Controller
 		$mail->addAddress($email, 'Hello World!');  
 
 		//$template = get_view('emails/welcome'); 
-		$mail->addAttachment(get_upload('demo.png'), 'Demo attachment');    // Optional name
+		$mail->addAttachment(uploaded_file('demo.png'), 'Demo attachment');    // Optional name
 
 		$mail->Subject = 'Here is the subject';
-		$mail->Body    = get_view('emails/demo');
+		$mail->Body    = view('emails/demo');
 		$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
 		if(!$mail->send()) {

@@ -22,7 +22,6 @@ class ErrorsController extends Controller
 	{
 		// construct Controller
 		parent::__construct();
-		$this->data['url'] = get_http_referer();
 	}
 
 	public function index()
@@ -35,14 +34,15 @@ class ErrorsController extends Controller
 
 	public function code($code)
 	{
+
 		if(file_exists(APP_VIEW . "errors/{$code}.php")){
 
 		return $this->View->render(array(
 			"errors/{$code}"
 			), $this->data);
 		}
-		
-		return http_redirect_to('errors/code/500');
+
+		return redirect('errors/code/502');
 	}
 
 	public function exception($message)

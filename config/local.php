@@ -17,6 +17,7 @@ return array(
 		'charset' => 'utf-8'
 	),
 	'auth' => array(
+		'status' => TRUE,
 		'table' => 'users'
 	),
 	'session' => array(
@@ -54,7 +55,7 @@ return array(
 		'status' => FALSE,
 		'storage' => 'framework/cache',
 		'ext' => 'html',
-		'ignore' => array(get_url() .'errors/code/404')
+		'ignore' => array(url() .'errors/code/404')
 	),
 	'filesystem' => array(
 		'upload' => 'uploads',
@@ -62,8 +63,7 @@ return array(
 	),
 	'mail' => array(
 		'status' => TRUE,
-		'driver' => env('MAIL_DRIVER', 'PHPMailer'),
-		'vendor' => env('MAIL_VENDOR', 'vendor/phpmailer/phpmailer/PHPMailerAutoload'),
+		'driver' => env('MAIL_DRIVER', 'smtp'),
 		'host' => env('MAIL_HOST', 'smtp.gmail.com'),
 		'port' => env('MAIL_PORT', 587),
 		'username' => env('MAIL_USERNAME', 'demo@gmail.com'),
