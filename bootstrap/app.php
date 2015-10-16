@@ -41,9 +41,8 @@ define('APP_STORAGE', BASE_PATH . 'storage' . DIRECTORY_SEPARATOR);
 /*
  * URL paths
  */
-define('APP_URL', $app->get('config.app.url'));
-define('APP_ASSET', APP_URL . 'public/assets' . DIRECTORY_SEPARATOR);
-define('APP_COMPONENT', APP_URL . 'public/components' . DIRECTORY_SEPARATOR);
+define('APP_ASSET', $app->get('config.app.url') . 'public/assets' . DIRECTORY_SEPARATOR);
+define('APP_COMPONENT', $app->get('config.app.url') . 'public/components' . DIRECTORY_SEPARATOR);
 
 /*
  * Resources path

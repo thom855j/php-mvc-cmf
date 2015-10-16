@@ -23,7 +23,8 @@
 		"websupport-dk/php-auth-framework": "dev-master",
 		"websupport-dk/php-email": "dev-master",
 		"websupport-dk/php-html": "dev-master",
-		"websupport-dk/php-http": "dev-master"
+		"websupport-dk/php-http": "dev-master",
+		"laravel/homestead": "~2.0"
 	},
 	"autoload": {
 		"psr-4": {
