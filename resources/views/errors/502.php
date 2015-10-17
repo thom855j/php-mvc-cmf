@@ -1,10 +1,10 @@
 
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
 <html><head>
-		<title>500: Internal Server Error</title>
+		<title>502: Unknown Error</title>
 	</head><body>
-		<h1>500: Internal Server Error</h1>
-		<p>The server encountered an internal error or
+		<h1>502: Unknown Error</h1>
+		<p>The server encountered an unknown error or
 			misconfiguration and was unable to complete
 			your request.</p>
 		<p>Please contact the server administrator,
