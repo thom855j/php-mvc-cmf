@@ -30,6 +30,7 @@ class TestController extends Controller
 	$capture->load('invoice/default.php',[
 		'order' => 1231
 	]);
+	$capture->respond('invoice.pdf');
 	}
 
 }

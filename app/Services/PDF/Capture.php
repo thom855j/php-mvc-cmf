@@ -27,6 +27,8 @@ class Capture
 		$path = $this->writeFile($view);
 
 		 $this->phantomProcess($path)->setTimeout(10)->mustRun();
+
+		 return $path;
 	}
 
 	protected function writeFile($view)
@@ -39,5 +41,19 @@ class Capture
 	{
 
 		return new Process(BASE_PATH . 'bin/phantomjs/phantomjs ' . BASE_PATH . 'public/assets/js/capture.js '  . $path);
+	}
+
+	public function respond($filename)
+	{
+		$response = new Response(file_get_contents($this->pdf), 200, array(
+			'Content-Description' => 'File Transfer',
+			'Content-Disposition' => 'attachment; filename="' . $filename .'"',
+			'Content-Transfer-Encoding' => 'binary',
+			'Content-Type' => 'application/pdf'
+		));
+
+		unlink($this->pdf);
+
+		$response->send();
 	}
 }
