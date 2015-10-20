@@ -2,4 +2,7 @@
 /*
  * Set custom services
  */
-$app->set('Service', (object) array('Test' => 'Hello World'));
+
+// Caoture screen pdf
+use PDF\Capture;
+$app->set('Capture', new Capture);
