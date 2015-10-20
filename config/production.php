@@ -57,6 +57,9 @@ return array(
 		'ext' => 'html',
 		'ignore' => array(url() .'errors/code/404')
 	),
+	'compiler' => array(
+		'status' => TRUE
+	),
 	'filesystem' => array(
 		'upload' => 'uploads',
 		'log' => 'storage/logs'

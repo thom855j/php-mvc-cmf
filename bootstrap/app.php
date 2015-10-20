@@ -1,6 +1,24 @@
 <?php
 /*
   |--------------------------------------------------------------------------
+  | Include The Compiled File
+  |--------------------------------------------------------------------------
+  |
+  | To dramatically increase your application's performance, you may use a
+  | compiled file which contains all of the commonly used bootstrap files
+  | by request.
+  |
+*/
+
+  if(file_exists(__DIR__.'/cache/compiled.php'))
+  {
+  
+  return require 'cache/compiled.php';
+
+  }
+
+/*
+  |--------------------------------------------------------------------------
   | Create The Application
   |--------------------------------------------------------------------------
   |
@@ -9,12 +27,10 @@
   | the IoC container for the system binding all of the various parts.
   |
  */
-use WebSupportDK\PHPMvcFramework\App;
 
-// Start app
-$app = App::load();
+require 'src/start.php';
 
-/*
+  /*
   |--------------------------------------------------------------------------
   | Basic helper functions
   |--------------------------------------------------------------------------
@@ -22,7 +38,8 @@ $app = App::load();
   | Common functions for easier development (you can add your own here!).
   |
  */
-require 'helpers.php';
+
+require 'src/helpers.php';
 
 /*
   |--------------------------------------------------------------------------
@@ -32,7 +49,9 @@ require 'helpers.php';
   | Set the config settings for the app.
   |
  */
-require 'config.php';
+
+require 'src/config.php';
+
 
 /*
   |--------------------------------------------------------------------------
@@ -42,7 +61,8 @@ require 'config.php';
   | Set common app constants
   |
  */
-require 'constants.php';
+
+require 'src/constants.php';
 
 
 /*
@@ -53,9 +73,10 @@ require 'constants.php';
   | Set common PHP options
   |
  */
-require 'time.php';
-require 'errors.php';
-require 'session.php';
+
+require 'src/time.php';
+require 'src/errors.php';
+require 'src/session.php';
 
 /*
   |--------------------------------------------------------------------------
@@ -65,7 +86,8 @@ require 'session.php';
   | To make a multilingual app we need to setup  language
   |
  */
-require 'language.php';
+
+require 'src/language.php';
 
 /*
   |--------------------------------------------------------------------------
@@ -77,12 +99,12 @@ require 'language.php';
   |
  */
 
-require 'view.php';
-require 'cache.php';
-require 'database.php';
-require 'auth.php';
-require 'mail.php';
-require 'router.php';
+require 'src/view.php';
+require 'src/cache.php';
+require 'src/database.php';
+require 'src/auth.php';
+require 'src/mail.php';
+require 'src/router.php';
 
 /*
   |--------------------------------------------------------------------------
@@ -92,7 +114,24 @@ require 'router.php';
   | Add services to the app if needed.
   |
  */
-  require 'services.php';
+
+require 'src/services.php';
+
+
+/*
+  |--------------------------------------------------------------------------
+  | Run Compiler
+  |--------------------------------------------------------------------------
+  |
+  | To dramatically increase your application's performance, we compile
+  | bootstrap files
+  |
+*/
+
+if($app->get('config.compiler.status'))
+{
+  require 'compiler.php';
+}  
 
 /*
   |--------------------------------------------------------------------------
@@ -102,4 +141,5 @@ require 'router.php';
   | Return the app class with all the required setup
   |
  */
-return $app;
+
+return require 'src/app.php';

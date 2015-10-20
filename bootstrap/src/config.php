@@ -1,6 +1,6 @@
 <?php
 // Set absolute path
-$app->set('__DIR__', realpath(__DIR__ . '/../') . DIRECTORY_SEPARATOR);
+$app->set('__DIR__', realpath(__DIR__ . '/../../') . DIRECTORY_SEPARATOR);
 define('BASE_PATH', $app->get('__DIR__'));
 define('STORAGE_PATH', BASE_PATH . 'storage' . DIRECTORY_SEPARATOR);
 

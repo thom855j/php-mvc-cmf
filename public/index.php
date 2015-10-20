@@ -16,7 +16,7 @@
   | loading any of our classes later on. It feels nice to relax.
   |
  */
-ini_set('display_errors', true);
+
 require __DIR__ . '/../bootstrap/autoload.php';
 
 /*

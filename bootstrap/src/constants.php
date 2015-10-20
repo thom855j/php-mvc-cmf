@@ -1,11 +1,6 @@
 <?php
 /*
-  |--------------------------------------------------------------------------
-  | App constants
-  |--------------------------------------------------------------------------
-  |
-  | Set common app constants
-  |
+ * App paths
  */
 define('APP_PUBLIC', BASE_PATH . 'public' . DIRECTORY_SEPARATOR);
 define('APP_UPLOAD', APP_PUBLIC . $app->get('config.filesystem.upload') . DIRECTORY_SEPARATOR);
