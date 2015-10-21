@@ -16,7 +16,7 @@
 	</head>
 
 	<body>
-		<h1><?php e(trans('messages.welcome')) ?></h1>
+		<h1><?php es(trans('messages.welcome')) ?></h1>
 		<p><?php pr($this) ?></p>
 
 		<script src="<?php e(asset('js/scripts.js')) ?>"></script>

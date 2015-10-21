@@ -24,12 +24,16 @@
 		"websupport-dk/php-email": "dev-master",
 		"websupport-dk/php-html": "dev-master",
 		"websupport-dk/php-http": "dev-master",
-		"laravel/homestead": "~2.0",
-		"twig/twig": "~2.0"
+		"twig/twig": "~2.0",
+		"gears/pdf": "*"
 	},
 	"autoload": {
 		"psr-4": {
 			"App\\": "app/"
 		}
+	},
+	"scripts": {
+    "post-install-cmd": ["PhantomInstaller\\Installer::installPhantomJS"],
+    "post-update-cmd": ["PhantomInstaller\\Installer::installPhantomJS"]
 	}
 }

@@ -55,7 +55,7 @@ function charset()
 }
 
 // Die and dump object
-function dd($object)
+function debug($object)
 {
 	echo '<pre>';
 	var_dump($object);
@@ -142,7 +142,7 @@ function pr($object)
 }
 
 // Echo and escape string
-function e($string)
+function es($string)
 {
 	echo htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
 }
@@ -168,4 +168,8 @@ function rutime($ru, $rus, $index)
 function storage($path)
 {
 	return APP_STORAGE . $path;
+}
+
+function csrf_token($key){
+	return WebSupportDK\PHPSecurity\Token::generate($key);
 }

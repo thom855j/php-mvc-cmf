@@ -8,7 +8,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="">
+
 
     <title><?php e(trans('messages.auth.please')) ?></title>
 
@@ -32,12 +32,13 @@
   <body>
 <? $name = trans('messages.form.name.email') ?>
     <div class="container">
-      <form class="form-signin">
+      <form method="post" action="<?php e(url('auth/verify')) ?>" class="form-signin">
         <h2 class="form-signin-heading"><?php e(trans('messages.auth.login')) ?></h2>
         <label for="<?php e($name) ?>" class="sr-only"><?php e(trans('messages.form.email')) ?></label>
         <input type="email" id="<?php e($name) ?>" name="<?php e($name)  ?>" class="form-control" placeholder="Email address" required="" autofocus="">
         <label for="inputPassword" class="sr-only"><?php e(trans('messages.form.password')) ?></label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+        <input type="password" id="inputPassword" name="<?php e(trans('messages.form.name.password')) ?>" class="form-control" placeholder="Password" required="">
+        <input type="hidden" name="csrf_token" value="<?php e(csrf_token('csrf_token')) ?>">
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"><?php e(trans('messages.form.remember')) ?>

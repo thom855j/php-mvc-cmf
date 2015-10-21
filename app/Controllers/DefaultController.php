@@ -8,6 +8,7 @@ namespace App\Controllers;
 
 use WebSupportDK\PHPMvcFramework\Controller;
 use App\Exceptions\Handler;
+use Gears\Pdf;
 
 class DefaultController extends Controller
 {
@@ -33,4 +34,10 @@ class DefaultController extends Controller
 			), $this->data);
 	}
 
+	public function test()
+	{
+		$test = storage('framework/app/test.pdf');
+		$pdf = Pdf::convert(APP_VIEW . 'test.html', $test);
+		debug($pdf);
+	}
 }

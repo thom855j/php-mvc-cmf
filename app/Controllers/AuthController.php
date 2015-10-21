@@ -9,7 +9,7 @@ namespace App\Controllers;
 use WebSupportDK\PHPMvcFramework\Controller;
 use App\Exceptions\Handler;
 
-use WebSupportDK\PHPSecurity\Input;
+use WebSupportDK\PHPHttp\Input;
 use WebSupportDK\PHPSecurity\Token;
 
 class AuthController extends Controller
@@ -31,6 +31,7 @@ class AuthController extends Controller
 
 	public function index()
 	{
+
 		return redirect('auth/login');
 	}
 
@@ -41,12 +42,14 @@ class AuthController extends Controller
 
 	public function verify()
 	{
-		if(Input::exists('post') && Token::check(config('app.key'))){
+
+		if(Input::exists('post') && Token::check('csrf_token', Input::get('csrf_token'))){
 		$login = app('Auth')->login(
 			Input::get('username'),
 			Input::get('password'), 
 			Input::get('remember')
 			);
+
 			if($login)
 			{
 				redirect();

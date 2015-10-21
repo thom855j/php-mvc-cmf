@@ -21,7 +21,8 @@ return array(
 					),
 			'name' => array(
 					'username' => 'Username',
-					'email' => 'Email'
+					'email' => 'Email',
+					'password' => 'Password'
 					)
 			)
 );
