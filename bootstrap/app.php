@@ -126,7 +126,7 @@ require 'src/router.php';
   |
  */
 
-require 'src/services.php';
+require 'src/providers.php';
 
 
 /*
