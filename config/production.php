@@ -29,11 +29,11 @@ return array(
 		'secure' => TRUE
 	),
 	'router' => array(
-		'storage' => 'app/Controllers',
+		'storage' => 'app/Http/Controllers',
 		'controller' => 'Default',
 		'action' => 'index',
 		'queryString' => 'uri',
-		'namespace' => 'App\\Controllers'
+		'namespace' => 'App\\Http\\Controllers'
 	),
 	'database' => array(
 		'status' => FALSE,

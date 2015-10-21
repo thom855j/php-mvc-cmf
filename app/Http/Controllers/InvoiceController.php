@@ -4,13 +4,11 @@
  * @author Thomas Elvin
  */
 // use folllowing classes
-namespace App\Controllers;
+namespace App\Http\Controllers;
 
 use WebSupportDK\PHPMvcFramework\Controller;
-use App\Exceptions\Handler;
-use Gears\Pdf;
 
-class DefaultController extends Controller
+class InvoiceController extends Controller
 {
 
 	// variable for storing view data
@@ -29,15 +27,10 @@ class DefaultController extends Controller
 
 	public function index()
 	{
-	return $this->View->render(array(
-			'home'
-			), $this->data);
+
+		$this->View->render(array(
+			'invoice/default'
+		));
 	}
 
-	public function test()
-	{
-		$test = storage('framework/app/test.pdf');
-		$pdf = Pdf::convert(APP_VIEW . 'test.html', $test);
-		debug($pdf);
-	}
 }

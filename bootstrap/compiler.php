@@ -9,8 +9,9 @@ if(!file_exists($compiledPath)){
 	$src = __DIR__.'/src/';
 	$files = array(
 		$src. 'start.php',
-		$src .'config.php', 
 		$src .'helpers.php',
+		$src .'config.php', 
+		$src .'paths.php',
 		$src .'constants.php',
 		$src .'time.php',
 		$src .'errors.php',
@@ -23,7 +24,7 @@ if(!file_exists($compiledPath)){
 		$src .'auth.php',
 		$src .'mail.php',
 		$src .'router.php',
-		$src .'services.php',
+		$src .'providers.php',
 		$src .'app.php'
 		);
 

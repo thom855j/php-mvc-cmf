@@ -4,7 +4,7 @@
  * @author Thomas Elvin
  */
 // use folllowing classes
-namespace App\Controllers;
+namespace App\Http\Controllers;
 
 use WebSupportDK\PHPMvcFramework\Controller;
 use App\Exceptions\Handler;

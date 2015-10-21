@@ -1,175 +1,241 @@
 <?php
 // Get or set something to/from app
-function app($name, $value = null)
-{
-	global $app;
-	if(!is_null($value))
+if (!function_exists('app')) { 
+
+	function app($name, $value = null)
 	{
-		return $app->set($name, $value);
+		global $app;
+		if(!is_null($value))
+		{
+			return $app->set($name, $value);
+		}
+		return $app->get($name);
 	}
-	return $app->get($name);
 }
 
 // Set env varibale from constant or use default string
-function env($constant, $string)
-{
-  return defined($constant) ? constant($constant) : $string;
+if (!function_exists('env')) { 
+
+	function env($constant, $string)
+	{
+	  return defined($constant) ? constant($constant) : $string;
+	}
 }
 
 // Get a view from the resources folder
-function view($string)
-{
-	req(APP_VIEW . $string);
+if (!function_exists('env')) { 
+
+	function view($string)
+	{
+		req(APP_VIEW . $string);
+	}
 }
 
 // Get something from config
-function config($string)
-{
-	global $app;
-	return $app->get("config.{$string}");
+if (!function_exists('config')) { 
+	function config($string)
+	{
+		global $app;
+		return $app->get("config.{$string}");
+	}
 }
 
-function uploaded_file($string)
-{
-	return APP_UPLOAD . $string;
+// Get uploaded file
+if (!function_exists('uploaded_file')) { 
+
+	function uploaded_file($string)
+	{
+		return APP_UPLOAD . $string;
+	}	
 }
 
 // Return locale lang
-function locale()
-{
+if (!function_exists('locale')) { 
 
-	return APP_LOCALE;
+	function locale()
+	{
+		return APP_LOCALE;
+	}
 }
 
 // Translate a string
-function trans($string)
-{
-	global $app;
-	return $app->get($string);
+if (!function_exists('trans')) { 
+	
+	function trans($string)
+	{
+		global $app;
+		return $app->get($string);
+	}
 }
 
 // Return app charset
-function charset()
-{
-	return APP_CHARSET;
+if (!function_exists('charset')) { 
+	
+	function charset()
+	{
+		return APP_CHARSET;
+	}
 }
 
 // Die and dump object
-function debug($object)
-{
-	echo '<pre>';
-	var_dump($object);
-	echo '</pre>';
-	die;
+if (!function_exists('dd')) { 
+	
+	function dd($object)
+	{
+		echo '<pre>';
+		var_dump($object);
+		echo '</pre>';
+		die;
+	}
 }
 
-// Just var_dump object
-function vd($object)
-{
-	echo '<pre>';
-	var_dump($object);
-	echo '</pre>';
-	exit;
-}
 
 // Redirect http errors
-function http_error_handler(){
-  /*
-  * Custom header errors handeling
-  */
+if (!function_exists('http_error_handler')) { 
 
-  switch (http_response_code())
-  {
-  case 404:
-    return redirect('errors/code/404/');
-    break;
+	function http_error_handler(){
+	  /*
+	  * Custom header errors handeling
+	  */
 
-    case 500:
-    return redirect('errors/code/500');
-    break;
+	  switch (http_response_code())
+	  {
+	  case 404:
+	    return redirect('errors/code/404/');
+	    break;
 
-  default:
-    break;
-  }
+	    case 500:
+	    return redirect('errors/code/500');
+	    break;
+
+	  default:
+	    break;
+  		}
+	}
 }
 
 // Return last visited url
-function http_referer()
-{
-	return WebSupportDK\PHPHttp\Url::getPrevious();
+if (!function_exists('http_referer')) { 
+
+	function http_referer()
+	{
+		return WebSupportDK\PHPHttp\Url::getPrevious();
+	}
 }
 
 // Redirect to string
-function redirect($string = null)
-{
-	return WebSupportDK\PHPHttp\Url::redirect(WebSupportDK\PHPHttp\Url::getRoot('public') . $string);
+if (!function_exists('redirect')) { 
+
+	function redirect($string = null)
+	{
+		return WebSupportDK\PHPHttp\Url::redirect(WebSupportDK\PHPHttp\Url::getRoot('public') . $string);
+	}
 }
 
-function back()
-{
+// Redirect back
+if (!function_exists('back')) { 
+
+	function back()
+	{
 		return redirect(http_referer());
+	}
 }
 
 // Return current url
-function current_url(){
-	return WebSupportDK\PHPHttp\Url::get();
+if (!function_exists('back')) { 
+
+	function current_url(){
+		return WebSupportDK\PHPHttp\Url::get();
+	}
 }
 
-// Return current url
-function url($path = null){
-	return WebSupportDK\PHPHttp\Url::getRoot('public') . $path;
+// Return current url (optionally with a path)
+if (!function_exists('url')) { 
+	
+	function url($path = null){
+		return WebSupportDK\PHPHttp\Url::getRoot('public') . $path;
+	}
 }
 
 // Get an asset from the public url
-function asset($path)
-{
-	return APP_ASSET . $path;
+if (!function_exists('asset')) { 
+
+	function asset($path)
+	{
+		return APP_ASSET . $path;
+	}
 }
 
 // Get a component from public url
-function component($path)
-{
-	return APP_COMPONENT . $path;
+if (!function_exists('component')) { 
+
+	function component($path)
+	{
+		return APP_COMPONENT . $path;
+	}
 }
 
+
 // print_r an object
-function pr($object)
-{
-	echo '<pre>';
-	print_r($object);
-	echo '</pre>';
-	exit;
+if (!function_exists('pr')) { 
+
+	function pr($object)
+	{
+		echo '<pre>';
+		print_r($object);
+		echo '</pre>';
+		die;
+	}
 }
 
 // Echo and escape string
-function es($string)
-{
-	echo htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
+if (!function_exists('e')) { 
+
+	function e($string)
+	{
+		echo htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
+	}
 }
 
 // Include a file
-function inc($path)
-{
-	include_once $path . '.php';
+if (!function_exists('inc')) { 
+
+	function inc($path)
+	{
+		include_once $path . '.php';
+	}
 }
 
 // Require a file
-function req($path)
-{
-	require_once $path . '.php';
+if (!function_exists('req')) { 
+
+	function req($path)
+	{
+		require_once $path . '.php';
+	}
 }
 
 // Output runtime of app
-function rutime($ru, $rus, $index)
-{
-	return ($ru["ru_$index.tv_sec"] * 1000 + intval($ru["ru_$index.tv_usec"] / 1000)) - ($rus["ru_$index.tv_sec"] * 1000 + intval($rus["ru_$index.tv_usec"] / 1000));
+if (!function_exists('rutime')) { 
+
+	function rutime($ru, $rus, $index)
+	{
+		return ($ru["ru_$index.tv_sec"] * 1000 + intval($ru["ru_$index.tv_usec"] / 1000)) - ($rus["ru_$index.tv_sec"] * 1000 + intval($rus["ru_$index.tv_usec"] / 1000));
+	}
 }
 
-function storage($path)
-{
-	return APP_STORAGE . $path;
+// Return storage page
+if (!function_exists('storage')) { 
+
+	function storage($path)
+	{
+		return APP_STORAGE . $path;
+	}
 }
 
-function csrf_token($key){
-	return WebSupportDK\PHPSecurity\Token::generate($key);
+if (!function_exists('csrf_token')) { 
+	
+	function csrf_token($key){
+		return WebSupportDK\PHPSecurity\Token::generate($key);
+	}
 }
