@@ -6,11 +6,11 @@
 // use folllowing classes
 namespace App\Http\Controllers;
 
-use WebSupportDK\PHPMvcFramework\Controller;
+use Datalaere\PHPMvcFramework\Controller;
 use App\Exceptions\Handler;
 
-use WebSupportDK\PHPHttp\Input;
-use WebSupportDK\PHPSecurity\Token;
+use Datalaere\PHPHttp\Input;
+use Datalaere\PHPSecurity\Token;
 
 class AuthController extends Controller
 {

@@ -33,7 +33,7 @@
     } 
 </style> 
 <?php
-use WebSupportDK\PHPSecurity\Session;
+use Datalaere\PHPSecurity\Session;
 
 // echo out positive messages 
 if (Session::exists('SUCCESS')) {

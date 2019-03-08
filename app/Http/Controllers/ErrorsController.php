@@ -6,7 +6,7 @@
 // use folllowing classes
 namespace App\Http\Controllers;
 
-use WebSupportDK\PHPMvcFramework\Controller;
+use Datalaere\PHPMvcFramework\Controller;
 use App\Exceptions\Handler;
 
 class ErrorsController extends Controller

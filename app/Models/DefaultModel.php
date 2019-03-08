@@ -4,7 +4,7 @@
  */
 namespace App\Models;
 
-use WebSupportDK\PHPMvcFramework\Model;
+use Datalaere\PHPMvcFramework\Model;
 
 class DefaultModel extends Model
 {

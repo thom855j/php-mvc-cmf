@@ -1,29 +1,30 @@
 {
-	"name": "websupport-dk/php-mvc-cmf",
+	"name": "datalaere/php-mvc-cmf",
+	"version": "dev-master",
 	"type": "project",
-	"license": "MIT",
-	"homepage": "https://github.com/WebSupport-DK/php-mvc-cmf",
 	"description": "A simple mvc cmf",
+	"homepage": "https://github.com/datalaere/php-mvc-cmf",
+	"license": "MIT",
 	"minimum-stability": "dev",
 	"authors": [
 		{
 			"name": "Thomas Elvin",
-			"email": "sde.thom855j@gmail.com",
-			"homepage": "http://websupport.dk",
+			"email": "info@datalaere.dk",
+			"homepage": "http://datalaere.dk",
 			"role": "Developer"
 		}
 	],
 	"require": {
 		"php": ">=5.5.0",
-		"websupport-dk/php-security": "dev-master",
-		"websupport-dk/php-scrud": "dev-master",
-		"websupport-dk/php-multilingual": "dev-master",
-		"websupport-dk/php-mvc-framework": "dev-master",
-		"websupport-dk/php-filesystem": "dev-master",
-		"websupport-dk/php-auth-framework": "dev-master",
-		"websupport-dk/php-email": "dev-master",
-		"websupport-dk/php-html": "dev-master",
-		"websupport-dk/php-http": "dev-master"
+		"datalaere/php-security": "dev-master",
+		"datalaere/php-scrud": "dev-master",
+		"datalaere/php-multilingual": "dev-master",
+		"datalaere/php-mvc-framework": "dev-master",
+		"datalaere/php-filesystem": "dev-master",
+		"datalaere/php-auth-framework": "dev-master",
+		"datalaere/php-email": "dev-master",
+		"datalaere/php-html": "dev-master",
+		"datalaere/php-http": "dev-master"
 	},
 	"autoload": {
 		"psr-4": {

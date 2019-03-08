@@ -6,9 +6,8 @@
 // use folllowing classes
 namespace App\Http\Controllers;
 
-use WebSupportDK\PHPMvcFramework\Controller;
+use Datalaere\PHPMvcFramework\Controller;
 use App\Exceptions\Handler;
-use Knp\Snappy\Pdf;
 
 class DefaultController extends Controller
 {
@@ -36,13 +35,6 @@ class DefaultController extends Controller
 
 	public function test()
 	{
-		$bin =	BASE_PATH . 'vendor/bin/wkhtmltopdf-amd64';
-		// Display the resulting pdf in the browser
-// by setting the Content-type header to pdf
-	$snappy = new Pdf();
-
-	$snappy->setBinary($bin);
-	$snappy->generateFromHtml('<h1>Bill</h1><p>You owe me money, dude.</p>', BASE_PATH .'storage/bill-123.pdf');
 
 	}
 }
