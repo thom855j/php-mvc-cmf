@@ -28,7 +28,7 @@ class DefaultController extends Controller
 
     public function index()
     {
-        return $this->View->render(array('home'), $this->data);
+        $this->View->render(array('home'), $this->data);
     }
 
     public function test()

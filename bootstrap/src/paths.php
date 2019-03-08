@@ -22,10 +22,11 @@ define('APP_LANG', APP_RESOURCE . 'lang' . DIRECTORY_SEPARATOR);
  * Storage paths
  */
 define('APP_VIEW', APP_RESOURCE . $app->get('config.view.storage') . DIRECTORY_SEPARATOR);
-define('APP_CACHE', APP_STORAGE . $app->get('config.cache.storage') . DIRECTORY_SEPARATOR);
+define('APP_CACHE_STORAGE', APP_STORAGE . $app->get('config.cache.storage') . DIRECTORY_SEPARATOR);
 define('APP_CONTROLLER', BASE_PATH . $app->get('config.router.storage') . DIRECTORY_SEPARATOR);
 
 /*
  * PHP ini paths
  */
 ini_set('upload_tmp_dir', APP_STORAGE . 'framework/app' . DIRECTORY_SEPARATOR); 
+

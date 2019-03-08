@@ -53,6 +53,7 @@ return array(
     ),
     'cache' => array(
         'status' => env('APP_CACHE', true),
+        'time' => 86400,
         'storage' => 'framework/cache',
         'ext' => 'html',
         'ignore' => array(url() .'errors/code/404')

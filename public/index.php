@@ -44,41 +44,6 @@ $app = require_once __DIR__ . '/../bootstrap/app.php';
   | and wonderful application we have prepared for them.
   |
  */
+$app->get('Router')->run();
 
-// mode switch
-switch (APP_ENV) {
-
-case 'local':
-
-  // start script
-
-  $rustart = getrusage();
-  $app->get('Router')->run();
-  // Check for http errors
-  http_error_handler();
-
-  // Script end
-
-  $ru = getrusage();
-  echo "<br>This process used " . rutime($ru, $rustart, "utime") . " ms for its computations\n";
-  echo "It spent " . rutime($ru, $rustart, "stime") . " ms in system calls\n";
-  break;
-
-case 'production':
-  // Get url
-  $app->get('Cache')->setUrl(current_url());
-  // Start cache
-  $app->get('Cache')->start();
-  // Run Router
-  $app->get('Router')->run();
-  // Check for http errors
-  http_error_handler();
-  // End and save cache if no errors
-  $app->get('Cache')->stop();
-  break;
-
-default:
-  // Default run
-  $app->get('Router')->run();
-  break;
-  }
+http_error_handler();

@@ -142,7 +142,7 @@ if (!function_exists('back')) {
 }
 
 // Return current url
-if (!function_exists('back')) { 
+if (!function_exists('current_url')) { 
 
 	function current_url(){
 		return Datalaere\PHPHttp\Url::get();
