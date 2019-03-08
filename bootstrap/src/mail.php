@@ -2,15 +2,16 @@
 /*
  * Set mailer
  */
-if ($app->get('config.mail.status')) {
 
 // Get mail driver
-req($app->get('__DIR__') . 'vendor/phpmailer/phpmailer/PHPMailerAutoload');
+use PHPMailer\PHPMailer\PHPMailer;
+
+if ($app->get('config.mail.status')) {
 // Set driver
 $app->set('Mailer', new PHPMailer);
 if(!is_null($app->get('config.mail.driver'))){
 	$app->get('Mailer')->isSMTP();
-	}
+}
 $app->get('Mailer')->CharSet = $app->get('config.app.charset');
 $app->get('Mailer')->Host = $app->get('config.mail.host');
 $app->get('Mailer')->SMTPAuth = TRUE;

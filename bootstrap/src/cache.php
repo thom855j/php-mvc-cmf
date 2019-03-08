@@ -2,7 +2,7 @@
 /*
  * Set Cache
  */
-use WebSupportDK\PHPFilesystem\Cache;
+use Datalaere\PHPFilesystem\Cache;
 if ($app->get('config.cache.status')) {
 	$app->set('Cache', new Cache());
 	$app->get('Cache')->setDir(APP_CACHE);

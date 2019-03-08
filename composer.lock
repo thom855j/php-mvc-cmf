@@ -1,0 +1,385 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "319df3be7d49e637cf63dfed0f35fbdf",
+    "packages": [
+        {
+            "name": "datalaere/php-auth-framework",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/datalaere/php-auth-framework.git",
+                "reference": "742420ffff35988556a951228172bf9418a03e28"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/datalaere/php-auth-framework/zipball/742420ffff35988556a951228172bf9418a03e28",
+                "reference": "742420ffff35988556a951228172bf9418a03e28",
+                "shasum": ""
+            },
+            "require": {
+                "datalaere/php-email": "dev-master",
+                "datalaere/php-scrud": "dev-master",
+                "datalaere/php-security": "dev-master",
+                "php": ">=5.5.0"
+            },
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "Datalaere\\PHPAuthFramework\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Authentication project for managing users and their permissions ",
+            "homepage": "https://github.com/datalaere/php-auth-framework",
+            "keywords": [
+                "Authentication",
+                "auth",
+                "login",
+                "permissions",
+                "user"
+            ],
+            "time": "2019-03-08T10:33:04+00:00"
+        },
+        {
+            "name": "datalaere/php-email",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/datalaere/php-email.git",
+                "reference": "1f553cc0234d96dce8727f887dd121225d0edebb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/datalaere/php-email/zipball/1f553cc0234d96dce8727f887dd121225d0edebb",
+                "reference": "1f553cc0234d96dce8727f887dd121225d0edebb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0",
+                "phpmailer/phpmailer": "dev-master"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Datalaere\\PHPEmail\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Simple email classes and wrappers",
+            "homepage": "https://github.com/datalaere/php-email",
+            "time": "2019-03-08T10:33:18+00:00"
+        },
+        {
+            "name": "datalaere/php-filesystem",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/datalaere/php-filesystem.git",
+                "reference": "d94f7dc638c70feeb8d65f075fa40bc72e402086"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/datalaere/php-filesystem/zipball/d94f7dc638c70feeb8d65f075fa40bc72e402086",
+                "reference": "d94f7dc638c70feeb8d65f075fa40bc72e402086",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Datalaere\\PHPFilesystem\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Simple, useful classes for working with the server filesystem",
+            "homepage": "https://github.com/datalaere/php-filesystem",
+            "time": "2019-03-08T10:33:34+00:00"
+        },
+        {
+            "name": "datalaere/php-html",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/datalaere/php-html.git",
+                "reference": "cbfb04f5b9efebd0b1ac8fb652699f519db9f25c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/datalaere/php-html/zipball/cbfb04f5b9efebd0b1ac8fb652699f519db9f25c",
+                "reference": "cbfb04f5b9efebd0b1ac8fb652699f519db9f25c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Datalaere\\PHPHtml\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Classes useful for manipulating html and outputs on clientside",
+            "homepage": "https://github.com/datalaere/php-html",
+            "time": "2019-03-08T10:33:43+00:00"
+        },
+        {
+            "name": "datalaere/php-http",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/datalaere/php-http.git",
+                "reference": "575e12aa853465b1430b3f2c5b074937e8819e8b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/datalaere/php-http/zipball/575e12aa853465b1430b3f2c5b074937e8819e8b",
+                "reference": "575e12aa853465b1430b3f2c5b074937e8819e8b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Datalaere\\PHPHttp\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Classes for manipulating routes and inputs like $_GET and $_POST",
+            "homepage": "https://github.com/datalaere/php-http",
+            "time": "2019-03-08T10:34:06+00:00"
+        },
+        {
+            "name": "datalaere/php-multilingual",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/datalaere/php-multilingual.git",
+                "reference": "1b23bfbaf85456d0455656dbc785d2c42de62ff5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/datalaere/php-multilingual/zipball/1b23bfbaf85456d0455656dbc785d2c42de62ff5",
+                "reference": "1b23bfbaf85456d0455656dbc785d2c42de62ff5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Datalaere\\PHPMultilingual\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Simple classes for making multilingual websites",
+            "homepage": "https://github.com/datalaere/php-multilingual",
+            "time": "2019-03-08T10:34:22+00:00"
+        },
+        {
+            "name": "datalaere/php-mvc-framework",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/datalaere/php-mvc-framework.git",
+                "reference": "fc6d0541e901805c8042b021b85b6d0c56165846"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/datalaere/php-mvc-framework/zipball/fc6d0541e901805c8042b021b85b6d0c56165846",
+                "reference": "fc6d0541e901805c8042b021b85b6d0c56165846",
+                "shasum": ""
+            },
+            "require": {
+                "datalaere/php-scrud": "dev-master",
+                "php": ">=5.5.0"
+            },
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "Datalaere\\PHPMvcFramework\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Useful classes for creating a php mvc app",
+            "homepage": "https://github.com/datalaere/php-mvc-framework",
+            "time": "2019-03-08T10:34:38+00:00"
+        },
+        {
+            "name": "datalaere/php-scrud",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/datalaere/php-scrud.git",
+                "reference": "8aeb782ed54f7bd970fb07172143cf751ddf77ca"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/datalaere/php-scrud/zipball/8aeb782ed54f7bd970fb07172143cf751ddf77ca",
+                "reference": "8aeb782ed54f7bd970fb07172143cf751ddf77ca",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Datalaere\\PHPScrud\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Simple scrud classes for using PDO and more in php",
+            "time": "2019-03-06T19:18:25+00:00"
+        },
+        {
+            "name": "datalaere/php-security",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/datalaere/php-security.git",
+                "reference": "656d83a5ab7dcf60d4b076624fff9b1767fdd9a5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/datalaere/php-security/zipball/656d83a5ab7dcf60d4b076624fff9b1767fdd9a5",
+                "reference": "656d83a5ab7dcf60d4b076624fff9b1767fdd9a5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Datalaere\\PHPSecurity\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Simple classes to use in php for security",
+            "time": "2019-03-06T19:18:39+00:00"
+        },
+        {
+            "name": "phpmailer/phpmailer",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHPMailer/PHPMailer.git",
+                "reference": "76c6b4c0a7f265e5df9e20a46d7c84b86184b2b7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/76c6b4c0a7f265e5df9e20a46d7c84b86184b2b7",
+                "reference": "76c6b4c0a7f265e5df9e20a46d7c84b86184b2b7",
+                "shasum": ""
+            },
+            "require": {
+                "ext-ctype": "*",
+                "ext-filter": "*",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "doctrine/annotations": "1.2.*",
+                "friendsofphp/php-cs-fixer": "^2.2",
+                "phpdocumentor/phpdocumentor": "2.*",
+                "phpunit/phpunit": "^4.8 || ^5.7",
+                "zendframework/zend-eventmanager": "3.0.*",
+                "zendframework/zend-i18n": "2.7.3",
+                "zendframework/zend-serializer": "2.7.*"
+            },
+            "suggest": {
+                "ext-mbstring": "Needed to send email in multibyte encoding charset",
+                "hayageek/oauth2-yahoo": "Needed for Yahoo XOAUTH2 authentication",
+                "league/oauth2-google": "Needed for Google XOAUTH2 authentication",
+                "psr/log": "For optional PSR-3 debug logging",
+                "stevenmaguire/oauth2-microsoft": "Needed for Microsoft XOAUTH2 authentication",
+                "symfony/polyfill-mbstring": "To support UTF-8 if the Mbstring PHP extension is not enabled (^1.2)"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PHPMailer\\PHPMailer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1"
+            ],
+            "authors": [
+                {
+                    "name": "Jim Jagielski",
+                    "email": "jimjag@gmail.com"
+                },
+                {
+                    "name": "Marcus Bointon",
+                    "email": "phpmailer@synchromedia.co.uk"
+                },
+                {
+                    "name": "Andy Prevost",
+                    "email": "codeworxtech@users.sourceforge.net"
+                },
+                {
+                    "name": "Brent R. Matzelle"
+                }
+            ],
+            "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
+            "time": "2019-03-05T12:45:40+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "datalaere/php-security": 20,
+        "datalaere/php-scrud": 20,
+        "datalaere/php-multilingual": 20,
+        "datalaere/php-mvc-framework": 20,
+        "datalaere/php-filesystem": 20,
+        "datalaere/php-auth-framework": 20,
+        "datalaere/php-email": 20,
+        "datalaere/php-html": 20,
+        "datalaere/php-http": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=5.5.0"
+    },
+    "platform-dev": []
+}

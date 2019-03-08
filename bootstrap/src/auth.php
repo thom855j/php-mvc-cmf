@@ -2,7 +2,7 @@
 /*
  * Set auth
  */
- use WebSupportDK\PHPAuthFramework\Auth;
+ use Datalaere\PHPAuthFramework\Auth;
  if($app->get('config.auth.status')){
  	$app->set('Auth', Auth::load());
  	$app->get('Auth')->setAttribute('db',$app->get('DB'));

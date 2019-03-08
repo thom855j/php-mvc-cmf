@@ -46,8 +46,8 @@ $app = require_once __DIR__ . '/../bootstrap/app.php';
  */
 
 // mode switch
-switch (APP_ENV)
-{
+switch (APP_ENV) {
+
 case 'local':
 
   // start script
@@ -82,4 +82,3 @@ default:
   $app->get('Router')->run();
   break;
   }
-

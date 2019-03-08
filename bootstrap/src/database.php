@@ -2,7 +2,7 @@
 /*
  * Set database
  */
-use WebSupportDK\PHPScrud\DB;
+use Datalaere\PHPScrud\DB;
 if ($app->get('config.database.status')) {
 	$app->set('DB', DB::load(
 		$app->get('config.database.driver'), 

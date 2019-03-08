@@ -1,6 +1,6 @@
 <?php
-use WebSupportDK\PHPSecurity\Cookie;
-use WebSupportDK\PHPSecurity\Session;
+use Datalaere\PHPSecurity\Cookie;
+use Datalaere\PHPSecurity\Session;
 define('APP_LOCALE', $app->get('config.app.locale'));
 define('APP_CHARSET', $app->get('config.app.charset'));
 

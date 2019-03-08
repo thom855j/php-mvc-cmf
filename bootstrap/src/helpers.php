@@ -119,7 +119,7 @@ if (!function_exists('http_referer')) {
 
 	function http_referer()
 	{
-		return WebSupportDK\PHPHttp\Url::getPrevious();
+		return Datalaere\PHPHttp\Url::getPrevious();
 	}
 }
 
@@ -128,7 +128,7 @@ if (!function_exists('redirect')) {
 
 	function redirect($string = null)
 	{
-		return WebSupportDK\PHPHttp\Url::redirect(WebSupportDK\PHPHttp\Url::getRoot('public') . $string);
+		return Datalaere\PHPHttp\Url::redirect(Datalaere\PHPHttp\Url::getRoot('public') . $string);
 	}
 }
 
@@ -145,7 +145,7 @@ if (!function_exists('back')) {
 if (!function_exists('back')) { 
 
 	function current_url(){
-		return WebSupportDK\PHPHttp\Url::get();
+		return Datalaere\PHPHttp\Url::get();
 	}
 }
 
@@ -153,7 +153,7 @@ if (!function_exists('back')) {
 if (!function_exists('url')) { 
 	
 	function url($path = null){
-		return WebSupportDK\PHPHttp\Url::getRoot('public') . $path;
+		return Datalaere\PHPHttp\Url::getRoot('public') . $path;
 	}
 }
 
@@ -236,6 +236,6 @@ if (!function_exists('storage')) {
 if (!function_exists('csrf_token')) { 
 	
 	function csrf_token($key){
-		return WebSupportDK\PHPSecurity\Token::generate($key);
+		return Datalaere\PHPSecurity\Token::generate($key);
 	}
 }

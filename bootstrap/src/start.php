@@ -2,7 +2,7 @@
 /*
  * Load app
  */
-use WebSupportDK\PHPMvcFramework\App;
+use Datalaere\PHPMvcFramework\App;
 
 // Start app
 $app = App::load();

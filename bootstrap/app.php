@@ -10,11 +10,8 @@
   |
 */
 
-  if(file_exists(__DIR__.'/cache/compiled.php'))
-  {
-  
-  return require 'cache/compiled.php';
-
+  if (APP_ENV == 'production' && file_exists(__DIR__.'/cache/compiled.php')) {
+      return require 'cache/compiled.php';
   }
 
 /*
@@ -139,10 +136,13 @@ require 'src/providers.php';
   |
 */
 
-if($app->get('config.compiler.status'))
-{
-  require 'compiler.php';
-}  
+if ($app->get('config.compiler.status')) {
+    require 'compiler.php';
+} else {
+    unlink(BASE_PATH . 'bootstrap/cache/compiled.php');
+}
+
+
 
 /*
   |--------------------------------------------------------------------------
